@@ -1,7 +1,9 @@
+import styles from '../../styles/Home.module.css'
+
 export default function About() {
     return (
-        <div>
-            This is really just a test
-        </div>
+            <h1 className={styles.title}>
+                This is really just a test
+            </h1>
     )
 }

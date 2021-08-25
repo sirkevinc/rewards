@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Rewards API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "sirkevinc",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.2.0",
+    "graphql": "^15.5.1"
+  }
+}
