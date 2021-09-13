@@ -14,17 +14,23 @@ const resolvers = {
         allCards: async(_, __, { models }) => {
             return models.Card.findAll();
         },
-        allUsersCards: async(_, { ids }, { models }) => {
-            return models.Card
+        testQuery: async(_, { id }, { models }) => {
+            const result = await models.User.findByPk(id, {
+                include: [
+                    {
+                        model: models.Card,
+                        as: "cards"
+                    }
+                ]
+            })
+            console.log(result)
+            return result;
         },
     },
     Mutation: {
         createUser: async (_, { username, email, password }, { models }) => {
-            return models.User.create({
-                username,
-                email,
-                password
-            });
+            const newUser = { username, email, password };
+            return await models.User.create(newUser);
         },
         updateUser: async(_, { id, username, email, password }, { models }) => {
             const updatedUser = { username, email, password };
@@ -70,6 +76,36 @@ const resolvers = {
                 return user;
             } catch(err) {
                 throw new UserInputError(err);
+            }
+        },
+
+        addUserToCard: async(_, { cardid, userid }, { models }) => {
+            try {
+                const card = await models.Card.findByPk(cardid);
+                if (!card) {
+                    console.error("Card not found");
+                }
+                const user = await models.User.findByPk(userid);
+                if (!user) {
+                    console.error("User not found");
+                }
+                await card.addUser(user);
+                console.log(`added User id=${user.id} to Card id=${card.id}`);
+                return card;
+                
+            } catch(err) {
+                console.error(err);
+            }
+        },
+
+        createCard: async(_, { bank, name, description, rewardType }, { models }) => {
+            try { 
+                const newCard = { bank, name, description, rewardType };
+                
+                return await models.Card.create(newCard);
+
+            } catch(err) {
+                console.error(err);
             }
         }
     }

@@ -12,9 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Card.belongsToMany(models.User, {
-        through: 'user-card',
+        through: 'User_Cards',
+        as:'users',
+        foreignKey: 'cardid'
       });
-      Card.hasMany(models.Benefit);
+      // Card.hasMany(models.Benefit);
     }
   };
   Card.init({

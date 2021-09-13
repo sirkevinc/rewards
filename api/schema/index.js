@@ -36,7 +36,7 @@ const typeDefs = gql`
         allUsers: [User!]!
         card(id: Int!): Card
         allCards: [Card!]!
-        allUsersCards (id: Int!): [Card!]!
+        testQuery (id: Int!): User
         benefit(id: Int!): Benefit
     }
 
@@ -46,14 +46,14 @@ const typeDefs = gql`
         destroyUser(id: Int!): UpdateResponse!
         login(email: String!, password: String!): User!
 
-        addUserCard(id: Int!): Card!
-        removeUserCard(id: Int!): UpdateResponse!
+        addUserToCard(cardid: Int!, userid: Int!): Card!
+        removeUserCard(cardid: Int!, userid: Int!): UpdateResponse!
 
-        createCard(bank: String!, name: String!, description: String, rewardType: String!, benefits: Int): Card!
-        updateCard(id: Int!, bank: String, name: String, description: String, rewardType: String, benefits: Int): Card!
+        createCard(bank: String!, name: String!, description: String, rewardType: String!): Card!
+        updateCard(id: Int!, bank: String, name: String, description: String, rewardType: String): Card!
         destroyCard(id: Int!): UpdateResponse!
 
-        createBenefit(type: String!, category: String!, multiplier: Float, descriptsion: String): Benefit!
+        createBenefit(type: String!, category: String!, multiplier: Float, description: String): Benefit!
         updateBenefit(id: Int!, type: String, category: String, multiplier: Float, description: String): Benefit!
         destroyBenefit(id: Int!): UpdateResponse!
     }
