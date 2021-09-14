@@ -11,10 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Benefit.belongsTo(models.Card, { foreignKey: 'id' })
+      Benefit.belongsTo(models.Card, { 
+        foreignKey: 'cardid',
+        as: 'card'
+      })
     }
   };
   Benefit.init({
+    cardid: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
     category: {
       allowNull: false,
       type: DataTypes.STRING
@@ -25,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     multiplier: {
       type: DataTypes.FLOAT
+    },
+    summary: {
+      allowNull: false,
+      type: DataTypes.STRING
     },
     description: {
       allowNull: false,

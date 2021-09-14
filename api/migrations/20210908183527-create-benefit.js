@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      cardid: {
+        type: Sequelize.INTEGER
+      },
       category: {
         allowNull: false,
         type: Sequelize.STRING
@@ -17,7 +20,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       multiplier: {
+        allowNull: false,
         type: Sequelize.FLOAT
+      },
+      summary: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       description: {
         allowNull: false,

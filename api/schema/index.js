@@ -13,16 +13,19 @@ const typeDefs = gql`
         id: Int!
         bank: String!
         name: String!
-        description: String
+        summary: String!
+        description: String!
         rewardType: String!
         benefits: [Benefit!]!
     }
 
     type Benefit {
         id: Int!
+        cardid: Int!
         type: String!
         category: String!
         multiplier: Float
+        summary: String!
         description: String!
     }
 
@@ -47,14 +50,14 @@ const typeDefs = gql`
         login(email: String!, password: String!): User!
 
         addUserToCard(cardid: Int!, userid: Int!): Card!
-        removeUserCard(cardid: Int!, userid: Int!): UpdateResponse!
+        removeUserFromCard(cardid: Int!, userid: Int!): UpdateResponse!
 
-        createCard(bank: String!, name: String!, description: String, rewardType: String!): Card!
-        updateCard(id: Int!, bank: String, name: String, description: String, rewardType: String): Card!
+        createCard(bank: String!, name: String!, summary: String!, description: String!, rewardType: String!): Card!
+        updateCard(id: Int!, bank: String, name: String, summary: String, description: String, rewardType: String): Card!
         destroyCard(id: Int!): UpdateResponse!
 
-        createBenefit(type: String!, category: String!, multiplier: Float, description: String): Benefit!
-        updateBenefit(id: Int!, type: String, category: String, multiplier: Float, description: String): Benefit!
+        createBenefit(cardid: Int!, type: String!, category: String!, multiplier: Float!, summary: String!, description: String!): Benefit!
+        updateBenefit(id: Int!, cardid: Int, type: String, category: String, multiplier: Float, summary: String!, description: String): Benefit!
         destroyBenefit(id: Int!): UpdateResponse!
     }
 `

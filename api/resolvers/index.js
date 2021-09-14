@@ -3,16 +3,34 @@ const { UserInputError } = require('apollo-server');
 const resolvers = {
     Query: {
         user: async (_, { id }, { models }) => {
-            return models.User.findByPk(id);
-        },
+            const result = await models.User.findByPk(id, {
+                include: [
+                    {
+                        model: models.Card,
+                        as: "cards"
+                    }
+                ]
+            })
+            return result;        },
         allUsers: async (_, __ , { models }) => {
             return models.User.findAll();
         },
         card: async (_, { id }, { models }) => {
-            return models.Card.findByPk(id);
+            const result = await models.Card.findByPk(id, {
+                include: [
+                    {
+                        model: models.Benefit,
+                        as: "benefits"
+                    }
+                ]
+            })
+            return result;
         },
         allCards: async(_, __, { models }) => {
-            return models.Card.findAll();
+            const cards = await models.Card.findAll({
+                include: ["benefits"]
+            });
+            return cards;
         },
         testQuery: async(_, { id }, { models }) => {
             const result = await models.User.findByPk(id, {
@@ -23,7 +41,6 @@ const resolvers = {
                     }
                 ]
             })
-            console.log(result)
             return result;
         },
     },
@@ -97,13 +114,88 @@ const resolvers = {
                 console.error(err);
             }
         },
+        removeUserFromCard: async(_, { cardid, userid }, { models }) => {
 
-        createCard: async(_, { bank, name, description, rewardType }, { models }) => {
+        },
+
+        createCard: async(_, { bank, name, summary, description, rewardType }, { models }) => {
             try { 
-                const newCard = { bank, name, description, rewardType };
+                const newCard = { bank, name, summary, description, rewardType };
                 
                 return await models.Card.create(newCard);
 
+            } catch(err) {
+                console.error(err);
+            }
+        },
+        updateCard: async(_, { id, bank, name, summary, description, rewardType }, { models }) => {
+            const updatedCard = { bank, name, summary, description, rewardType };
+            try {
+                const result = await models.Card.update(
+                   updatedCard, 
+                   { where: { id: id }}
+               );
+                if (!result[0]) {
+                   throw new UserInputError('Error while updating user');
+                }
+                return await models.User.findByPk(id); 
+            } catch(err) {
+                throw new UserInputError(err);
+            }
+        },
+        destroyCard: async(_, { id }, { models }) => {
+            try {
+                const deletedCard = await models.User.destroy({ where: { id: id } });
+                if (!deletedCard) {
+                    const failedResponse = { success: false, message: "Card delete failed"};
+                    return failedResponse;
+                }
+                const updateResponse = { success: true, message: "Card successfully deleted"};
+                return updateResponse;
+            } catch(err) {
+                throw new UserInputError(err);
+            }
+        },
+
+        createBenefit: async(_, { cardid, type, category, multiplier, summary, description }, { models }) => {
+            try {
+                const newBenefit = ({
+                    cardid,
+                    type,
+                    category,
+                    multiplier,
+                    summary,
+                    description,
+                });
+                return await models.Benefit.create(newBenefit);
+            } catch (err) {
+                console.error(err);
+            }
+        },
+        updateBenefit: async(_, { id, cardid, type, category, multiplier, summary, description }, { models }) => {
+            try {
+                const updatedBenefit = { cardid, type, category, multiplier, summary, description };
+                const result = await models.Benefit.update(
+                    updatedBenefit,
+                    { where: { id: id }}
+                );
+                if (!result[0]) {
+                    throw new UserInputError('Error while updating benefit');
+                }
+                return await models.Benefit.findByPk(id);
+            } catch(err) {
+                console.error(err);
+            }
+        },
+        destroyBenefit: async(_, { id }, { models }) => {
+            try {
+                const deletedCard = await models.Benefit.destroy({ where: { id: id } });
+                if (!deletedCard) {
+                    const failedResponse = { success: false, message: "Benefit delete failed"};
+                    return failedResponse;
+                }
+                const updateResponse = { success: true, message: "Benefit successfully deleted"};
+                return updateResponse;
             } catch(err) {
                 console.error(err);
             }

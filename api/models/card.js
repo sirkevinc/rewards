@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         as:'users',
         foreignKey: 'cardid'
       });
-      // Card.hasMany(models.Benefit);
+      Card.hasMany(models.Benefit, { foreignKey: 'cardid', as: 'benefits' });
     }
   };
   Card.init({
@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    summary: {
       allowNull: false,
       type: DataTypes.STRING
     },
