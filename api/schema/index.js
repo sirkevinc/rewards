@@ -39,8 +39,10 @@ const typeDefs = gql`
         allUsers: [User!]!
         card(id: Int!): Card
         allCards: [Card!]!
-        testQuery (id: Int!): User
         benefit(id: Int!): Benefit
+        allBenefits: [Benefit!]!
+        
+        testQuery (id: Int!): User
     }
 
     type Mutation {

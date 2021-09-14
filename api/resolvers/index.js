@@ -11,9 +11,10 @@ const resolvers = {
                     }
                 ]
             })
-            return result;        },
+            return result;
+        },
         allUsers: async (_, __ , { models }) => {
-            return models.User.findAll();
+            return await models.User.findAll({ include: ["cards"] });
         },
         card: async (_, { id }, { models }) => {
             const result = await models.Card.findByPk(id, {
@@ -28,10 +29,24 @@ const resolvers = {
         },
         allCards: async(_, __, { models }) => {
             const cards = await models.Card.findAll({
-                include: ["benefits"]
+                include: [
+                    {
+                        model: models.Benefit,
+                        as: "benefits"
+                    }
+                ]
             });
             return cards;
         },
+        benefit: async (_, { id }, { models }) => {
+            const result = await models.Benefit.findByPk(id);
+            return result;
+        },
+        allBenefits: async(_, ___, { models }) => {
+            const benefits = await models.Benefit.findAll();
+            return benefits;
+        },
+
         testQuery: async(_, { id }, { models }) => {
             const result = await models.User.findByPk(id, {
                 include: [
@@ -115,7 +130,26 @@ const resolvers = {
             }
         },
         removeUserFromCard: async(_, { cardid, userid }, { models }) => {
-
+            try {
+                const card = await models.Card.findByPk(cardid);
+                if (!card) {
+                    console.error("Card not found");
+                }
+                const user = await models.User.findByPk(userid);
+                if (!user) {
+                    console.error("User not found");
+                }
+                const result = await card.removeUser(user);
+                if (!result) {
+                    const message = { success: false, message: "Could not remove card from user"};
+                    return message;
+                }
+                console.log(`removed User id=${user.id} from Card id=${card.id}`);
+                const message = { success: true, message: `removed User id=${user.id} from Card id=${card.id}` };
+                return message;
+            } catch(err) {
+                console.error(err);
+            }
         },
 
         createCard: async(_, { bank, name, summary, description, rewardType }, { models }) => {
