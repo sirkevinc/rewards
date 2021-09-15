@@ -47,16 +47,10 @@ const resolvers = {
             return benefits;
         },
 
-        testQuery: async(_, { id }, { models }) => {
-            const result = await models.User.findByPk(id, {
-                include: [
-                    {
-                        model: models.Card,
-                        as: "cards"
-                    }
-                ]
-            })
-            return result;
+        testQuery: async(root, args, context) => {
+            console.log('root', root);
+            console.log('args', args);
+            console.log('context', context);
         },
     },
     Mutation: {

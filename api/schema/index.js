@@ -42,7 +42,7 @@ const typeDefs = gql`
         benefit(id: Int!): Benefit
         allBenefits: [Benefit!]!
         
-        testQuery (id: Int!): User
+        testQuery: UpdateResponse
     }
 
     type Mutation {
