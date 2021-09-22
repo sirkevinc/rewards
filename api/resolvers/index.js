@@ -1,7 +1,24 @@
 const { UserInputError } = require('apollo-server');
+const bcrypt = require('bcrypt');
+const jsonwebtoken = require('jsonwebtoken');
 
 const resolvers = {
     Query: {
+        me: async (_, __, { models, user }) => {
+            if (!user) {
+                throw new Error ('You are not authenticated!')
+            }
+
+            return await models.User.findByPk(user.id, {
+                include: [
+                    {
+                        model: models.Card,
+                        as: "cards"
+                    }
+                ]
+            });
+        },
+
         user: async (_, { id }, { models }) => {
             const result = await models.User.findByPk(id, {
                 include: [
@@ -14,7 +31,8 @@ const resolvers = {
             return result;
         },
         allUsers: async (_, __ , { models }) => {
-            return await models.User.findAll({ include: ["cards"] });
+            const result = await models.User.findAll({ include: ["cards"] });
+            return result;
         },
         card: async (_, { id }, { models }) => {
             const result = await models.Card.findByPk(id, {
@@ -55,8 +73,13 @@ const resolvers = {
     },
     Mutation: {
         createUser: async (_, { username, email, password }, { models }) => {
-            const newUser = { username, email, password };
-            return await models.User.create(newUser);
+            const newUser = await models.User.create({ username, email, password: await bcrypt.hash(password, 10) });
+            const token = await jsonwebtoken.sign(
+                { id: newUser.id, email: newUser.email },
+                process.env.JWT_SECRET,
+                { expiresIn: '1y' }
+            )
+            return { token };
         },
         updateUser: async(_, { id, username, email, password }, { models }) => {
             const updatedUser = { username, email, password };
@@ -68,8 +91,9 @@ const resolvers = {
                 if (!result[0]) {
                    throw new UserInputError('Error while updating user');
                 }
-                const returnUpdatedUser = await models.User.findByPk(id);
-                return returnUpdatedUser;
+                // const returnUpdatedUser = await models.User.findByPk(id);
+                const updateResponse = { success: true, message: "User successfully updated"}
+                return updateResponse;
             } catch(err) {
                 throw new UserInputError(err);
             }
@@ -88,21 +112,32 @@ const resolvers = {
             }
         },
         login: async(_, { email, password }, { models }) => {
-            try {
-                const user = models.User.findAll({
-                    limit: 1,
-                    where: {
-                        email,
-                        password
-                    }
-                })
-                if (!user) {
-                    throw new UserInputError("Login Failed");
+            let user = await models.User.findAll({
+                limit: 1,
+                where: {
+                    email
                 }
-                return user;
-            } catch(err) {
-                throw new UserInputError(err);
+            });
+
+            user = user[0]
+
+            if (!user) {
+                throw new Error ('User not found');
             }
+
+            const valid = await bcrypt.compare(password, user.password);
+
+            if (!valid) {
+                throw new Error('Incorrect Login');
+            }
+
+            const token = await jsonwebtoken.sign(
+                { id: user.id, email: user.email },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' }
+            )
+
+            return { token };
         },
 
         addUserToCard: async(_, { cardid, userid }, { models }) => {

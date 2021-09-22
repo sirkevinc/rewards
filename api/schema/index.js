@@ -29,12 +29,17 @@ const typeDefs = gql`
         description: String!
     }
 
+    type UserToken {
+        token: String
+    }
+
     type UpdateResponse {
         success: Boolean!
         message: String
     }
 
     type Query {
+        me: User
         user(id: Int!): User
         allUsers: [User!]!
         card(id: Int!): Card
@@ -46,10 +51,10 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createUser(username: String!, email: String!, password: String!): User!
-        updateUser(id: Int!, username: String, email: String, password: String): User!
+        createUser(username: String!, email: String!, password: String!): UserToken
+        updateUser(id: Int!, username: String, email: String, password: String): UpdateResponse!
         destroyUser(id: Int!): UpdateResponse!
-        login(email: String!, password: String!): User!
+        login(email: String!, password: String!): UserToken
 
         addUserToCard(cardid: Int!, userid: Int!): Card!
         removeUserFromCard(cardid: Int!, userid: Int!): UpdateResponse!
