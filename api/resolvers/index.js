@@ -1,4 +1,4 @@
-const { UserInputError } = require('apollo-server');
+const { ApolloError, UserInputError } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
 
@@ -130,13 +130,13 @@ const resolvers = {
             const valid = await bcrypt.compare(password, user.password);
 
             if (!valid) {
-                throw new Error('Login Failed');
+                throw new Error('Login Failed. Wrong email or password.');
             }
 
             const token = await jsonwebtoken.sign(
                 { id: user.id, email: user.email },
                 process.env.JWT_SECRET,
-                { expiresIn: '1d' }
+                { expiresIn: '7d' }
             )
 
             return { token };

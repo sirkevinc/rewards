@@ -5,7 +5,6 @@ import {
     InMemoryCache,
     HttpLink,
     gql,
-    onError
 } from '@apollo/client'
 import Cookies from 'js-cookie'
 
@@ -88,17 +87,20 @@ function useProvideAuth() {
                 }
             }
         `
-        const result = await client.mutate({
-            mutation: LoginMutation,
-            variables: { email, password },
-        });
-                        
-        if (result?.data?.login?.token) {
-            const cookieToken = result.data.login.token;
-            Cookies.set('token', cookieToken, { expires: 7 });
-
-            console.log('authtoken!', authToken)
-            console.log('cookie', Cookies.get('token'))
+        try {
+            const result = await client.mutate({
+                mutation: LoginMutation,
+                variables: { email, password },
+            });
+            if (result?.data?.login?.token) {
+                const cookieToken = result.data.login.token;
+                Cookies.set('token', cookieToken, { expires: 7 });
+                return cookieToken;
+                // console.log('authtoken!', authToken)
+                // console.log('cookie', Cookies.get('token'))
+            }
+        } catch(err) {
+            return err;
         }
     };
 

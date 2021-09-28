@@ -20,6 +20,11 @@ import { useState, useEffect } from 'react'
 export default function Login() {
   const { isSignedIn, signOut } = useAuth();
   const [user, setUser] = useState({});
+  const [error, setError] = useState();
+  const errorHandler = (err) => {
+    setError(err);
+  }
+
   useEffect(() => {
     const fetchUser = async () => {
       const currentUser = await isSignedIn();
@@ -28,14 +33,17 @@ export default function Login() {
     fetchUser().catch(console.error);
   }, []);
 
+  console.log(error);
   return (
     <div>
         <h1>Login Page</h1>
         {user?<p>Current User Id: {user.email}</p>:<p>Not Logged In</p>}
-        <SignIn />
+        {error?<p>{error.message}</p>:null}
+        <SignIn errorHandler={errorHandler}/>
 
         <button onClick={isSignedIn}>Check current</button>
         <button onClick={signOut}>Sign Out</button>
+        {/* <button onClick={() => errorHandler('hi')}>Ok</button> */}
     </div>
   );
 }
