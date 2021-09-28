@@ -56,7 +56,7 @@ const typeDefs = gql`
         destroyUser(id: Int!): UpdateResponse!
         login(email: String!, password: String!): UserToken
 
-        addUserToCard(cardid: Int!, userid: Int!): Card!
+        addUserToCard(cardid: Int!, userid: Int!): UpdateResponse!
         removeUserFromCard(cardid: Int!, userid: Int!): UpdateResponse!
 
         createCard(bank: String!, name: String!, summary: String!, description: String!, rewardType: String!): Card!

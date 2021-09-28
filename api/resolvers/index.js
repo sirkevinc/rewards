@@ -8,8 +8,8 @@ const resolvers = {
             if (!user) {
                 throw new Error ('You are not authenticated!')
             }
-
-            return await models.User.findByPk(user.id, {
+            
+            const result = await models.User.findByPk(user.id, {
                 include: [
                     {
                         model: models.Card,
@@ -17,6 +17,7 @@ const resolvers = {
                     }
                 ]
             });
+            return result;
         },
 
         user: async (_, { id }, { models }) => {
@@ -69,6 +70,7 @@ const resolvers = {
             console.log('root', root);
             console.log('args', args);
             console.log('context', context);
+            return { success: true, message: "Test" }
         },
     },
     Mutation: {
@@ -128,7 +130,7 @@ const resolvers = {
             const valid = await bcrypt.compare(password, user.password);
 
             if (!valid) {
-                throw new Error('Incorrect Login');
+                throw new Error('Login Failed');
             }
 
             const token = await jsonwebtoken.sign(
@@ -140,41 +142,57 @@ const resolvers = {
             return { token };
         },
 
-        addUserToCard: async(_, { cardid, userid }, { models }) => {
+        addUserToCard: async(_, { cardid, userid }, { models, user }) => {
             try {
+                if (!user) {
+                    throw new Error ('You are not authenticated!')
+                }
+                userid = user.id;
                 const card = await models.Card.findByPk(cardid);
                 if (!card) {
                     console.error("Card not found");
                 }
-                const user = await models.User.findByPk(userid);
-                if (!user) {
+                const currentUser = await models.User.findByPk(userid);
+                if (!currentUser) {
                     console.error("User not found");
                 }
-                await card.addUser(user);
+                const result = await card.addUser(currentUser);
+                const updateResponse = {};
+                if (!result) {
+                    // throw new Error('Could not add card');
+                    updateResponse.success = false,
+                    updateResponse.message = 'Could not add card to user'
+                    return updateResponse;
+                }
                 console.log(`added User id=${user.id} to Card id=${card.id}`);
-                return card;
-                
+                updateResponse.success = true;
+                updateResponse.message = 'Successfully added card to user'
+                return updateResponse;
             } catch(err) {
                 console.error(err);
             }
         },
-        removeUserFromCard: async(_, { cardid, userid }, { models }) => {
+        removeUserFromCard: async(_, { cardid, userid }, { models, user }) => {
             try {
+                if (!user) {
+                    throw new Error('You are not authenticated!');
+                }
+                userid = user.id;
                 const card = await models.Card.findByPk(cardid);
                 if (!card) {
                     console.error("Card not found");
                 }
-                const user = await models.User.findByPk(userid);
-                if (!user) {
+                const currentUser = await models.User.findByPk(userid);
+                if (!currentUser) {
                     console.error("User not found");
                 }
-                const result = await card.removeUser(user);
+                const result = await card.removeUser(currentUser);
                 if (!result) {
                     const message = { success: false, message: "Could not remove card from user"};
                     return message;
                 }
                 console.log(`removed User id=${user.id} from Card id=${card.id}`);
-                const message = { success: true, message: `removed User id=${user.id} from Card id=${card.id}` };
+                const message = { success: true, message: `Removed User id=${user.id} from Card id=${card.id}` };
                 return message;
             } catch(err) {
                 console.error(err);

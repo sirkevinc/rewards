@@ -1,0 +1,13 @@
+.title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  
