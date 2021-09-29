@@ -1,8 +1,5 @@
 import { createContext } from 'react'
-import { useAuth } from '../lib/auth'
 
-
-const userContext = createContext({ user: {name: "test"} });
-const { isSignedIn } = useAuth();
+const userContext = createContext({ user: { name: "test" }});
 
 export { userContext };

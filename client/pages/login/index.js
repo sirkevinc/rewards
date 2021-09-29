@@ -19,25 +19,23 @@ import { useState, useEffect } from 'react'
 
 export default function Login() {
   const { isSignedIn, signOut } = useAuth();
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [error, setError] = useState();
   const errorHandler = (err) => {
     setError(err);
   }
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const currentUser = await isSignedIn();
-      setUser(currentUser)
-    }
-    fetchUser().catch(console.error);
-  }, []);
-
-  console.log(error);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const currentUser = await isSignedIn();
+  //     setUser(currentUser)
+  //   }
+  //   fetchUser().catch(console.error);
+  // }, []);
   return (
     <div>
         <h1>Login Page</h1>
-        {user?<p>Current User Id: {user.email}</p>:<p>Not Logged In</p>}
+        {/* {user?<p>Current User Id: {user.email}</p>:<p>Not Logged In</p>} */}
         {error?<p>{error.message}</p>:null}
         <SignIn errorHandler={errorHandler}/>
 

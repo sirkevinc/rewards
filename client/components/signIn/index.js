@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useAuth } from '../../lib/auth.js'
+import { userContext } from '../../context/userContext'
+
 
 const SignIn = (props) => {
+    const user = useContext(userContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -11,12 +14,14 @@ const SignIn = (props) => {
       e.preventDefault()
       try {
         const result =  await signIn({ email, password });
-        props.errorHandler(result);
-        
+        if (result.graphQLErrors) {
+          props.errorHandler(result);
+        } else {
+          props.errorHandler(null);
+        }
       } catch(err) {
         console.error(err);        
       }
-      // signIn({ email, password })
     }
     return (
       <div>
@@ -32,8 +37,6 @@ const SignIn = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
           <button type="submit">Sign In</button>
-          <button onClick={() => props.errorHandler('hi')}>Ok</button>
-
         </form>
       </div>
     )

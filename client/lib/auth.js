@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from 'react'
+import React, { useState, useContext, createContext, useEffect } from 'react'
 import {
     ApolloProvider,
     ApolloClient,
@@ -8,16 +8,29 @@ import {
 } from '@apollo/client'
 import Cookies from 'js-cookie'
 
+import { userContext } from '../context/userContext'
+
 const authContext = createContext();
 
 export function AuthProvider({ children }) {
     const auth = useProvideAuth();
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        const fetchUser = async() => {
+            const currentUser = await auth.isSignedIn();
+            setUser(currentUser);     
+        }
+        fetchUser().catch(console.error);
+    }, []);
 
     return (
         <authContext.Provider value={auth}>
-            <ApolloProvider client={auth.createApolloClient()}>
-                {children}
-            </ApolloProvider>
+            <userContext.Provider value={user}>
+                <ApolloProvider client={auth.createApolloClient()}>
+                        {children}
+                </ApolloProvider>
+            </userContext.Provider>
         </authContext.Provider>
     )
 }
