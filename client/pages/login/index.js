@@ -1,37 +1,31 @@
 import styles from '../../styles/Home.module.css'
 import SignIn from '../../components/signIn'
 import { useAuth } from '../../lib/auth.js'
+import { useRouter } from 'next/router'
 
-import { useState, useEffect } from 'react'
+import { userContext } from '../../lib/user'
 
-// import { useState } from 'react'
-
-// export default function Login() {
-//     return (
-//             <h1 className={styles.title}>
-//                 This is really just a test
-//             </h1>
-//     )
-// }
-
-// import React from 'react';
-// import { useForm } from 'react-hook-form';
+import { useState, useEffect, useContext } from 'react'
 
 export default function Login() {
-  const { isSignedIn, signOut } = useAuth();
-  // const [user, setUser] = useState({});
+  const { isSignedIn } = useAuth();
+  const { userInfo, userLoading } = useContext(userContext);
   const [error, setError] = useState();
   const errorHandler = (err) => {
     setError(err);
   }
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const currentUser = await isSignedIn();
-  //     setUser(currentUser)
-  //   }
-  //   fetchUser().catch(console.error);
-  // }, []);
+  useEffect(() => {
+    console.log(userInfo)
+    const fetchUser = async () => {
+      const currentUser = await isSignedIn();
+      if (currentUser) {
+        router.push('/dashboard');
+      }
+    }
+    fetchUser().catch(console.error);
+  }, []);
   return (
     <div>
         <h1>Login Page</h1>
@@ -39,8 +33,7 @@ export default function Login() {
         {error?<p>{error.message}</p>:null}
         <SignIn errorHandler={errorHandler}/>
 
-        <button onClick={isSignedIn}>Check current</button>
-        <button onClick={signOut}>Sign Out</button>
+        {/* <button onClick={signOut}>Sign Out</button> */}
         {/* <button onClick={() => errorHandler('hi')}>Ok</button> */}
     </div>
   );

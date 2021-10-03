@@ -29,8 +29,9 @@ const typeDefs = gql`
         description: String!
     }
 
-    type UserToken {
+    type AuthPayload {
         token: String
+        user: User
     }
 
     type UpdateResponse {
@@ -51,10 +52,10 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createUser(username: String!, email: String!, password: String!): UserToken
+        createUser(username: String!, email: String!, password: String!): AuthPayload
         updateUser(id: Int!, username: String, email: String, password: String): UpdateResponse!
         destroyUser(id: Int!): UpdateResponse!
-        login(email: String!, password: String!): UserToken
+        login(email: String!, password: String!): AuthPayload
 
         addUserToCard(cardid: Int!, userid: Int!): UpdateResponse!
         removeUserFromCard(cardid: Int!, userid: Int!): UpdateResponse!

@@ -8,29 +8,16 @@ import {
 } from '@apollo/client'
 import Cookies from 'js-cookie'
 
-import { userContext } from '../context/userContext'
-
 const authContext = createContext();
 
 export function AuthProvider({ children }) {
     const auth = useProvideAuth();
-    const [user, setUser] = useState();
-
-    useEffect(() => {
-        const fetchUser = async() => {
-            const currentUser = await auth.isSignedIn();
-            setUser(currentUser);     
-        }
-        fetchUser().catch(console.error);
-    }, []);
 
     return (
         <authContext.Provider value={auth}>
-            <userContext.Provider value={user}>
-                <ApolloProvider client={auth.createApolloClient()}>
-                        {children}
-                </ApolloProvider>
-            </userContext.Provider>
+            <ApolloProvider client={auth.createApolloClient()}>
+                    {children}
+            </ApolloProvider>
         </authContext.Provider>
     )
 }
@@ -40,10 +27,11 @@ export const useAuth = () => {
 }
 
 function useProvideAuth() {
-    const [authToken, setAuthToken] = useState(null);
+    // const [authToken, setAuthToken] = useState(null);
 
     const isSignedIn = async () => {
         if (Cookies.get('token')) {
+            console.log("IsSignedIn");
             const client = createApolloClient();
             const meQuery = gql `
                 query {
@@ -59,7 +47,7 @@ function useProvideAuth() {
                     query: meQuery,
                 });
                 const currentUser = result.data.me;
-                console.log('currentUser', currentUser)
+                // console.log('currentUser', currentUser)
                 return currentUser;
             } catch (err) {
                 throw new Error (err);
@@ -71,8 +59,8 @@ function useProvideAuth() {
 
     const getAuthHeaders = () => {
         const cookieToken = Cookies.get('token');
-        console.log('authtoken', authToken);
-        console.log('cookieToken...?', cookieToken)
+        // console.log('authtoken', authToken);
+        // console.log('cookieToken...?', cookieToken)
         if (!cookieToken) return null;
         return {
             authorization: `Bearer ${cookieToken}`,
@@ -97,6 +85,11 @@ function useProvideAuth() {
             mutation login($email: String!, $password: String!) {
                 login(email: $email, password: $password) {
                     token
+                    user {
+                        id
+                        email
+                        username
+                    }
                 }
             }
         `
@@ -105,6 +98,7 @@ function useProvideAuth() {
                 mutation: LoginMutation,
                 variables: { email, password },
             });
+            console.log(result);
             if (result?.data?.login?.token) {
                 const cookieToken = result.data.login.token;
                 Cookies.set('token', cookieToken, { expires: 7 });
@@ -118,12 +112,12 @@ function useProvideAuth() {
     };
 
     const signOut = () => {
-        setAuthToken(null);
+        // setAuthToken(null);
         Cookies.remove('token');
     }
 
     return {
-        setAuthToken,
+        // setAuthToken,
         isSignedIn,
         signIn,
         signOut,

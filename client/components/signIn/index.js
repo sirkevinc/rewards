@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react'
 import { useAuth } from '../../lib/auth.js'
-import { userContext } from '../../context/userContext'
-
+import { userContext } from '../../lib/user'
+import { useRouter } from 'next/router'
 
 const SignIn = (props) => {
-    const user = useContext(userContext)
+    const { userInfo, userLoading, setUserInfo } = useContext(userContext)
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -18,6 +19,11 @@ const SignIn = (props) => {
           props.errorHandler(result);
         } else {
           props.errorHandler(null);
+          router.push('/dashboard');
+          // setUserInfo("Signing In")
+          // setUserLoading(false)
+
+          // window.location.href="http://localhost:3000/dashboard"
         }
       } catch(err) {
         console.error(err);        

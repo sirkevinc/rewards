@@ -139,7 +139,7 @@ const resolvers = {
                 { expiresIn: '7d' }
             )
 
-            return { token };
+            return { token, user };
         },
 
         addUserToCard: async(_, { cardid, userid }, { models, user }) => {
