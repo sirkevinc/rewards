@@ -1,19 +1,22 @@
 import styles from '../../styles/Home.module.css'
 
-export default function Card() {
+export default function Card(props) {
+    console.log('card component props', props)
     return (
         <div className="card__container">
-            <div className="card__image">Card Image</div>
-            {/* <div className="card__info">
+            <div className="card__image">
+                Card Image
+            </div>
+            <div className="card__info">
                 <div className="card__info-main">
-                    <h2>Card Name</h2>
-                    <h3>Card Bank</h3>
-                    <h3>Card Tagline</h3>
+                    <h3>{props.name}</h3>
+                    <h4>{props.bank}</h4>
+                    <h4>Card Tagline</h4>
                 </div>
                 <div className="card__info-description">
-                    <p>Card description blah blah blah blah</p>
+                    <p>Description blah blah blah</p>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

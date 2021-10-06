@@ -17,15 +17,18 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(userInfo)
-    const fetchUser = async () => {
-      const currentUser = await isSignedIn();
-      if (currentUser) {
-        router.push('/dashboard');
-      }
+    console.log('login', userInfo)
+    if (userInfo) {
+      router.push('/dashboard');
     }
-    fetchUser().catch(console.error);
-  }, []);
+    // const fetchUser = async () => {
+    //   const currentUser = await isSignedIn();
+    //   if (currentUser) {
+    //     router.push('/dashboard');
+    //   }
+    // }
+    // fetchUser().catch(console.error);
+  }, [userInfo]);
   return (
     <div>
         <h1>Login Page</h1>

@@ -39,6 +39,9 @@ function useProvideAuth() {
                         id
                         email
                         username
+                        cards {
+                            id
+                        }
                     }
                 }
                 `;

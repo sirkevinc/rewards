@@ -1,25 +1,24 @@
-import { useQuery, gql } from '@apollo/client'
+// import { useQuery, gql } from '@apollo/client'
 import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styles from '../../styles/Page.module.css'
-import Card from '../../components/card'
 
 import { userContext } from '../../lib/user'
 import { useMeQuery } from '../../lib/userQuery'
 
-const MeQuery = gql`
-    {
-        me {
-            id
-            username
-            email
-            cards {
-                bank
-                name
-            }
-        }
-    }
-`
+// const MeQuery = gql`
+//     {
+//         me {
+//             id
+//             username
+//             email
+//             cards {
+//                 bank
+//                 name
+//             }
+//         }
+//     }
+// `
 
 export default function Dashboard() {
     const { userInfo, userLoading, setUserInfo, setUserLoading } = useContext(userContext);
@@ -48,8 +47,9 @@ export default function Dashboard() {
         return `${error} Please return to login page`;
     }
     return (
-        <div>
+        <div className={styles.main}>
             IDKLOL
+
             {data.me?<p>{data.me.email}</p>:<p>Negative...</p>}
         </div>
     )

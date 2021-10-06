@@ -1,5 +1,8 @@
 import { useQuery, gql } from '@apollo/client'
+import { useContext } from 'react'
+import { userContext } from '../../lib/user'
 import styles from '../../styles/Page.module.css'
+import CardList from '../../components/cardList'
 
 const AllCardsQuery = gql`
     {
@@ -12,31 +15,20 @@ const AllCardsQuery = gql`
 `
 
 export default function Cards() {
-    const { loading, error, data } = useQuery(AllCardsQuery);
-
-    if (loading) return <p>Loading ...</p>;
-    if (error) return `Error! ${error}`;
+    const { userInfo, userLoading } = useContext(userContext)
+    console.log('Cards page', userInfo);
 
     return (
         <div>
             <h1 className={styles.title}>Test</h1>
-            <ul>
+            {userInfo?<CardList type={'UserCardsQuery'}/>:<CardList type={'AllCardsQuery'}/>}
+            {/* <ul>
             {data.allCards.map((card) => {
                 return (
                     <li key={card.id}>{card.name}</li>
                 )
             })}
-            </ul>
+            </ul> */}
         </div>
     )
 }
-
-// import styles from '../../styles/Home.module.css'
-
-// export default function Cards() {
-//     return (
-//             <h1 className={styles.title}>
-//                 This is really just a test Cards 
-//             </h1>
-//     )
-// }

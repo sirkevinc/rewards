@@ -2,6 +2,7 @@ import styles from '../../styles/Home.module.css'
 import { useContext } from 'react'
 import { userContext } from '../../lib/user'
 import { useAuth } from '../../lib/auth'
+import Link from 'next/link'
 
 export default function Navbar() {
     const { userInfo } = useContext(userContext);
@@ -9,12 +10,12 @@ export default function Navbar() {
     const logOutHandler = (e) => {
         e.preventDefault();
         signOut();
-        window.location.href="http://localhost:3000/login"
+        window.location.href="http://localhost:3000/"
     }
     console.log('navbar', userInfo)
     return (
         <nav className={styles.nav}>
-            Dis a navbar
+            <Link href='/'>Home</Link>
             {userInfo?
                 <div>
                     User: {userInfo.username}
@@ -22,7 +23,7 @@ export default function Navbar() {
                     <button onClick={logOutHandler}>Log Out</button>
                 </div>
                 : 
-                <p>Login/Register</p>
+                <Link href='/login'>Login/Register</Link>
             }
         </nav>
     )
