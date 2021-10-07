@@ -16,6 +16,7 @@ export default function Navbar() {
     return (
         <nav className={styles.nav}>
             <Link href='/'>Home</Link>
+            <Link href='/cards'>Cards</Link>
             {userInfo?
                 <div>
                     User: {userInfo.username}
