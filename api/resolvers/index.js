@@ -1,6 +1,7 @@
 const { ApolloError, UserInputError } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
+const { Op } = require('sequelize');
 
 const resolvers = {
     Query: {
@@ -65,21 +66,22 @@ const resolvers = {
             const benefits = await models.Benefit.findAll();
             return benefits;
         },
-
-        testQuery: async(root, args, context) => {
-            console.log('root', root);
-            console.log('args', args);
-            console.log('context', context);
-            return { success: true, message: "Test" }
-        },
     },
     Mutation: {
         createUser: async (_, { username, email, password }, { models }) => {
+            const existingUserCheck = await models.User.findOne({
+                where: {
+                    [Op.or]: { email, username }
+                }
+            })
+            if (existingUserCheck) {
+                throw new Error('User with this email or username already exists')
+            }
             const newUser = await models.User.create({ username, email, password: await bcrypt.hash(password, 10) });
             const token = await jsonwebtoken.sign(
                 { id: newUser.id, email: newUser.email },
                 process.env.JWT_SECRET,
-                { expiresIn: '1y' }
+                { expiresIn: '1d' }
             )
             return { token };
         },
@@ -136,7 +138,7 @@ const resolvers = {
             const token = await jsonwebtoken.sign(
                 { id: user.id, email: user.email },
                 process.env.JWT_SECRET,
-                { expiresIn: '7d' }
+                { expiresIn: '1d' }
             )
 
             return { token, user };

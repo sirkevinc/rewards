@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 const SignUp = (props) => {
-    const { register, handleSubmit, formState: { errors}} = useForm();
+    const { register, handleSubmit, formState: { errors }} = useForm();
     // const onSubmit = data => console.log(data);
     // const onError = (errors, e) => console.log(errors, e)
     const router = useRouter();
@@ -17,7 +17,7 @@ const SignUp = (props) => {
         try {
             const result = await signUp(data);
             if (result.graphQLErrors) {
-                console.log(result.graphQLErrors);
+                props.errorHandler(result.graphQLErrors[0])
             } else {
                 router.push('/dashboard')
             }
@@ -28,12 +28,53 @@ const SignUp = (props) => {
   
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("username", { required: 'Required', maxLength: 15, minLength: { value: 3, message: 'Must be between 3 and 15 characters' }})} placeholder="User Name" />
-            {errors.username?.type === 'required' && "Username is required"}
-            <input {...register("email", { required: true })} placeholder="Email Address" />
-            <input {...register("password", { required: true, maxLength: 20, minLength: 6 })} placeholder="Password" type="password" />
-
-            <input type="submit" />
+            <input 
+                placeholder='User Name'
+                {...register('username', { 
+                    required: 'User name is required', 
+                    maxLength: {
+                        value: 15,
+                        message: 'Must be between 3 and 15 characters'
+                    }, 
+                    minLength: {
+                        value: 3,
+                        message: 'Must be between 3 and 15 characters'
+                    }
+                })} 
+            />
+            <p>{errors.username?.message}</p>
+            {/* {errors.username?.type === 'required' && 'Username is required'}
+            {errors.username?.type === 'maxLength' || errors.username?.type === 'minLength' && 'Must be between 3 and 15 characters'} */}
+            <input
+                placeholder='Email Address'
+                {...register('email', { 
+                    required: 'Email address required',
+                    pattern: {
+                        value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: 'Please enter a valid email',
+                    },
+                })} 
+            />
+            <p>{errors.email?.message}</p>
+            <input 
+                placeholder='Password' 
+                type='password' 
+                {...register('password', { 
+                    required: 'Password is required', 
+                    maxLength: {
+                        value: 20,
+                        message: 'Must be between 6 and 20 characters'
+                    }, 
+                    minLength: {
+                        value: 6,
+                        message: 'Must be between 6 and 20 characters'
+                    }
+                })} 
+            />
+            <p>{errors.username?.password}</p>
+            {/* {errors.password?.type === 'required' && 'Password is required'}
+            {errors.password?.type === 'maxLength' || errors.password?.type === 'minLength' && 'Must be between 6 and 30 characters'} */}
+            <input type='submit' value='Register' />
         </form>
     )
   }

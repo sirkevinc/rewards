@@ -8,7 +8,7 @@ import { userContext } from '../../lib/user'
 import { useState, useEffect, useContext } from 'react'
 
 export default function Register() {
-  const { isSignedIn } = useAuth();
+  const { signUp } = useAuth();
   const { userInfo, userLoading } = useContext(userContext);
   const [error, setError] = useState();
   const errorHandler = (err) => {
@@ -31,7 +31,7 @@ export default function Register() {
 //   }, [userInfo]);
   return (
     <div>
-        <h1>Sign Up Page</h1>
+        <h1>Register</h1>
         {/* {user?<p>Current User Id: {user.email}</p>:<p>Not Logged In</p>} */}
         {error?<p>{error.message}</p>:null}
         <SignUp errorHandler={errorHandler}/>

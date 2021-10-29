@@ -29,26 +29,9 @@ export default function EditUserCards({ show }) {
         }    
     `
 
-    // useEffect(() => {
-    //   if (myCards) {
-    //       for (let i = 0; i < myCards.length; i++) {
-    //           const idObj = { ...myCardIds };
-    //           const cardId = myCards[i].id;
-    //           if (!idObj[cardId]) {
-    //               idObj[cardId] = true;
-    //               setMyCardIds(idObj)
-    //           }
-    //       }
-    //   }  
-    // }, [myCardIds])
-
-    useEffect(() => {
-        initializeMyIds();
-    }, [myCardIds])
-
     const addUserCard = useMutation(addUserCardMutation);
     const removeUserCard = useMutation(removeUserCardMutation);
-
+    
     const initializeMyIds = () => {
         if (myCards) {
             for (let i = 0; i < myCards.length; i++) {
@@ -61,13 +44,13 @@ export default function EditUserCards({ show }) {
             }
         }
     }
-
+    
     const addId = (cardid) => {
         const idObj = { ...myCardIds };
         idObj[cardid] = true;
         setMyCardIds(idObj);
     }
-
+    
     const removeId = (cardid) => {
         const idObj = { ...myCardIds };
         delete idObj[cardid];
@@ -91,11 +74,13 @@ export default function EditUserCards({ show }) {
                     })
                 }
             });
-            if (addResult.data.addUserToCard.success) {
+            const success = addResult.data.addUserToCard.success;
+            const message = addResult.data.addUserToCard.message; 
+            if (success) {
                 console.log('success!')
                 addId(cardid);
             } else {
-                console.error(addResult.data.addUserToCard.message)
+                console.error(message)
             }
         }
         if (type === 'remove') {
@@ -127,10 +112,14 @@ export default function EditUserCards({ show }) {
     
     const error = addUserCard.error || removeUserCard.error;
     const loading = addUserCard.loading || removeUserCard.loading;
-
+    
     if (loading) return <p>Loading</p>
     if (error) return console.log(error)
 
+    useEffect(() => {
+        initializeMyIds();
+    }, [myCardIds])
+    
     return (
         <div className={showHideClassName}>
             Edit Cards yo...

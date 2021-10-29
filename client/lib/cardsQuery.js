@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const GET_ALL_CARDS = gql`
     {
@@ -49,8 +49,5 @@ const GET_MY_CARDS = gql`
         }
     }
 `
-// const useAllCardsQuery = () => useQuery(GET_ALL_CARDS);
-// const useUserCardsQuery = () => useQuery(GET_USER_CARDS);
-// const useMyCardsQuery = () => useQuery(GET_MY_CARDS);
 
 export { GET_ALL_CARDS, GET_USER_CARDS, GET_MY_CARDS }

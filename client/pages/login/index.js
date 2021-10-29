@@ -2,6 +2,7 @@ import styles from '../../styles/Home.module.css'
 import SignIn from '../../components/signIn'
 import { useAuth } from '../../lib/auth.js'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { userContext } from '../../lib/user'
 
@@ -35,6 +36,7 @@ export default function Login() {
         {/* {user?<p>Current User Id: {user.email}</p>:<p>Not Logged In</p>} */}
         {error?<p>{error.message}</p>:null}
         <SignIn errorHandler={errorHandler}/>
+        <p>Don't Have an account? Register <Link href="/register">here</Link>!</p>
 
         {/* <button onClick={signOut}>Sign Out</button> */}
         {/* <button onClick={() => errorHandler('hi')}>Ok</button> */}

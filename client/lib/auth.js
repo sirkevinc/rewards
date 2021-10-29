@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext, useEffect } from 'react'
+import React, { useContext, createContext } from 'react'
 import {
     ApolloProvider,
     ApolloClient,
@@ -27,8 +27,18 @@ export const useAuth = () => {
 }
 
 function useProvideAuth() {
-    // const [authToken, setAuthToken] = useState(null);
+    const createApolloClient = () => {
+        const link = new HttpLink({
+            uri: 'http://localhost:4000/graphql',
+            headers: getAuthHeaders(),
+        })
 
+        return new ApolloClient({
+            link,
+            cache: new InMemoryCache(),
+        }) 
+    };
+    
     const isSignedIn = async () => {
         if (Cookies.get('token')) {
             console.log("IsSignedIn");
@@ -67,18 +77,6 @@ function useProvideAuth() {
         }
     };
 
-    const createApolloClient = () => {
-        const link = new HttpLink({
-            uri: 'http://localhost:4000/graphql',
-            headers: getAuthHeaders(),
-        })
-
-        return new ApolloClient({
-            link,
-            cache: new InMemoryCache(),
-        }) 
-    };
-    
     const signIn = async({ email, password }) => {
         const client = createApolloClient();
         const LoginMutation = gql `
@@ -137,12 +135,10 @@ function useProvideAuth() {
     }
 
     const signOut = () => {
-        // setAuthToken(null);
         Cookies.remove('token');
     }
 
     return {
-        // setAuthToken,
         isSignedIn,
         signIn,
         signOut,
