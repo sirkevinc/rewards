@@ -6,26 +6,11 @@ import styles from '../../styles/Page.module.css'
 import { userContext } from '../../lib/user'
 import { useMeQuery } from '../../lib/userQuery'
 
-// const MeQuery = gql`
-//     {
-//         me {
-//             id
-//             username
-//             email
-//             cards {
-//                 bank
-//                 name
-//             }
-//         }
-//     }
-// `
-
 export default function Dashboard() {
     const { userInfo, userLoading, setUserInfo, setUserLoading } = useContext(userContext);
     const router = useRouter();
 
     const { loading, error, data } = useMeQuery();
-    console.log('Dashboard userquery', data);
 
     useEffect(() => {
         if (data) {
@@ -36,7 +21,7 @@ export default function Dashboard() {
         }
     }, [userLoading, userInfo, data]);
 
-    console.log('Dashboard Context', userInfo, userLoading)
+    console.log('Dashboard', userInfo, userLoading)
 
     if (loading) return <p>Loading ...</p>;
     if (error) {

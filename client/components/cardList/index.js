@@ -1,73 +1,67 @@
 import Card from '../card';
-import { gql, useQuery } from '@apollo/client'
+// import { gql, useQuery } from '@apollo/client'
 import { useContext, useState, useEffect } from 'react'
-import { userContext } from '../../lib/user'
-import Categories from '../categories'
+// import { userContext } from '../../lib/user'
+import Filter from '../filter'
+import EditUserCards from '../editUserCards'
+import { cardsContext } from '../../lib/cards';
 
-export default function CardList(props) {
-    const { userInfo } = useContext(userContext);
+export default function CardList({ type }) {
+    // const { userInfo } = useContext(userContext);
+    const { allCards, myCards } = useContext(cardsContext);
     const [displayedCards, setDisplayedCards] = useState([]);
-    let query, useCardsQuery;
-    if (props.type === 'AllCardsQuery') {
-        query = gql`
-        {
-            allCards {
-                id
-                bank
-                name
-            }
-        }
-        `
-        useCardsQuery = () => useQuery(query);
-    } else if (props.type === 'UserCardsQuery') {
-        query = gql`
-        query($id: Int!) {
-            user(id: $id) {
-                cards {
-                    id
-                    bank
-                    name
-                }
-            }
-        }
-        ` 
-        useCardsQuery = () => useQuery(query, {
-            variables: { id: userInfo.id }
-        });
-    }
-    const { loading, data, error } = useCardsQuery();
+    const [showEdit, setShowEdit] = useState(false);
+    
     useEffect(() => {
-        if (data) {
-            setDisplayedCards(cards);
+        if (type === 'MyCards') {
+            setDisplayedCards(myCards);
+        } else {
+            setDisplayedCards(allCards);
         }
-    }, [data]);
-    let cards;
-    if (data) {
-        cards = data.allCards || data.user.cards;
-    }
+    }, [myCards, allCards, type])
+    
     const clear = () => {
-        setDisplayedCards(cards);
+        setDisplayedCards(myCards || allCards);
     }
 
-    const filterHandler = (bank) => {
-        // clear();
-        const filterResults = cards.filter((card) => {
-            return card.bank === bank;
-        })
-        setDisplayedCards(filterResults);
+    const filterHandler = (type, query) => {
+        if (type === 'bank') {
+            setDisplayedCards(displayedCards => {
+                return displayedCards.filter((card) => {
+                    return card.bank === query;
+                })
+            });
+        }
+        if (type === 'categories') {
+            const filterResults = displayedCards.filter((card) => {
+                const benefits = card.benefits;
+                for (let i = 0; i < benefits.length; i++) {
+                    return benefits[0].category === query;
+                }
+            })
+            setDisplayedCards(filterResults)
+        }
     }
-    if (loading) return <p>Loading...</p>
-    if (error) console.log(error)
+    const editToggle = () => {
+        setShowEdit(!showEdit);
+    }
+    
+    // if (loading) return <p>Loading...</p>
+    // if (error) console.log(error)
+    
+    console.log('cardList display', displayedCards)
     return (
         <div className="cardList__container">
-            <Categories filter={filterHandler} />
-            <button onClick={clear}>Clear</button>
+            {/* <Filter filter={filterHandler} type={'banks'} />
+            <button onClick={clear}>Clear</button> */}
+            {type==='MyCards'&&<button onClick={editToggle}>{showEdit?<p>Finish Editing</p>:<p>Edit My Cards</p>}</button>}
+            {showEdit && <EditUserCards show={showEdit} />}
             {displayedCards?
             <ul>
                 {displayedCards.map((card) => {
-                    const { id, bank, name } = card;
+                    const { id, bank, name, benefits } = card;
                     return (
-                        <Card key={id} id={id} bank={bank} name={name} />
+                        <Card key={id} id={id} bank={bank} name={name} benefits={benefits} />
                     )
                 })}
             </ul>
@@ -75,3 +69,59 @@ export default function CardList(props) {
         </div>
     )
 }
+
+// let query, useCardsQuery;
+// if (props.type === 'AllCardsQuery') {
+//     query = gql`
+//     {
+//         allCards {
+//             id
+//             bank
+//             name
+//             summary
+//             description
+//             rewardType
+//             benefits {
+//                 type
+//                 category
+//                 multiplier
+//                 summary
+//                 description
+//             }
+//         }
+//     }
+//     `
+//     useCardsQuery = () => useQuery(query);
+// } else if (props.type === 'UserCardsQuery') {
+//     query = gql`
+//     query($id: Int!) {
+//         user(id: $id) {
+//             cards {
+//                 id
+//                 bank
+//                 name
+//                 summary
+//                 description
+//                 rewardType
+//                 benefits {
+//                     type
+//                     category
+//                     multiplier
+//                     summary
+//                     description
+//                 }
+//             }
+//         }
+//     }
+//     ` 
+//     useCardsQuery = () => useQuery(query, {
+//         variables: { id: userInfo.id }
+//     });
+// }
+// const { loading, data, error } = useCardsQuery();
+
+// useEffect(() => {
+//     if (data) {
+//         setDisplayedCards(cards);
+//     }
+// }, [data]);

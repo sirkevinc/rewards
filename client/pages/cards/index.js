@@ -3,54 +3,41 @@ import { useEffect, useState, useContext } from 'react'
 import { userContext } from '../../lib/user'
 import styles from '../../styles/Page.module.css'
 import CardList from '../../components/cardList'
-import Categories from '../../components/categories'
 
-const AllCardsQuery = gql`
-    {
-        allCards {
-            id
-            bank
-            name
-        }
-    }
-`
 
 export default function Cards() {
-    const { userInfo, userLoading } = useContext(userContext);
-    const [queryType, setQueryType] = useState('AllCardsQuery');
-    console.log('Cards page', userInfo);
-
-    // if (userInfo && !userLoading && queryType !== 'UserCardsQuery') {
-    //     setQueryType('UserCardsQuery');
-    // }
+    const { userInfo } = useContext(userContext);
+    const [listType, setListType] = useState('AllCards');
+    const [showEdit, setShowEdit] = useState(false); 
+    
     useEffect(() => {
         if (userInfo) {
-            setQueryType('UserCardsQuery');
+            setListType('MyCards');
         }
     }, [userInfo])
-
+    
     const allSwitch = () => {
-        if(queryType === 'UserCardsQuery') {
-            setQueryType('AllCardsQuery');
+        if (listType === 'MyCards') {
+            setListType('AllCards');
         } else {
-            setQueryType('UserCardsQuery')
+            setListType('MyCards')
         }
     }
+    
+    // const filterHandler = () => {
+    // }
 
-    const filterHandler = () => {
-    }
-    console.log(queryType)
+    console.log('Cards page');
+
     return (
         <div>
             <h1 className={styles.title}>Test</h1>
             {userInfo?
                 <div>
-                    <button onClick={allSwitch}>{queryType==='UserCardsQuery' ? <b>Show All</b>: <b>Show My Cards</b>}</button>
-                    {queryType === 'UserCardsQuery'? <h3>My Cards</h3>:<h3>All Cards</h3>}
-                    
+                    <button onClick={allSwitch}>{listType==='MyCards'?<b>Show All</b>:<b>Show My Cards</b>}</button>
+                    {listType === 'MyCards'? <h3>My Cards</h3>:<h3>All Cards</h3>}
                 </div>:<div>All Cards</div>}
-                {/* <Categories /> */}
-                <CardList type={queryType} />
+                <CardList type={listType} />
                 {/* {userInfo?<CardList type={'UserCardsQuery'}/>:<CardList type={'AllCardsQuery'}/>} */}
             {/* <ul>
             {data.allCards.map((card) => {

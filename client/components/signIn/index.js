@@ -1,10 +1,8 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../../lib/auth.js'
-import { userContext } from '../../lib/user'
 import { useRouter } from 'next/router'
 
 const SignIn = (props) => {
-    const { userInfo, userLoading, setUserInfo } = useContext(userContext)
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

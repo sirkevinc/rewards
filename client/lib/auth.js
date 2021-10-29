@@ -39,9 +39,6 @@ function useProvideAuth() {
                         id
                         email
                         username
-                        cards {
-                            id
-                        }
                     }
                 }
                 `;
@@ -114,6 +111,31 @@ function useProvideAuth() {
         }
     };
 
+    const signUp = async({ username, email, password }) => {
+        const client = createApolloClient();
+        const SignUpMutation = gql`
+            mutation createUser($username: String!, $email: String!, $password: String!) {
+                createUser(username: $username, email: $email, password: $password) {
+                    token
+                }
+            }
+        `
+        try {
+            const result = await client.mutate({
+                mutation: SignUpMutation,
+                variables: { username, email, password },
+            });
+            console.log('register result', result);
+            if (result?.data?.createUser?.token) {
+                const cookieToken = result.data.createUser.token;
+                Cookies.set('token', cookieToken, { expires: 7 });
+                return cookieToken;
+            }
+        } catch(err) {
+            return err;
+        }
+    }
+
     const signOut = () => {
         // setAuthToken(null);
         Cookies.remove('token');
@@ -124,6 +146,7 @@ function useProvideAuth() {
         isSignedIn,
         signIn,
         signOut,
+        signUp,
         createApolloClient,
     }
 }

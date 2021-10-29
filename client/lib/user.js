@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext } from 'react'
 import { useAuth } from '../lib/auth'
+import { CardsContextProvider } from '../lib/cards'
 
 export const userContext = createContext();
 
@@ -22,7 +23,9 @@ export function UserContextProvider({ children }) {
 
     return (
         <userContext.Provider value={{ userInfo, setUserInfo, userLoading, setUserLoading }}>
-            {children}
+            <CardsContextProvider>
+                {children}
+            </CardsContextProvider>
         </userContext.Provider>
     )
 }

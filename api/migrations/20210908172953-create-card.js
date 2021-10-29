@@ -1,4 +1,7 @@
 'use strict';
+
+const { DataTypes } = require("sequelize/types");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Cards', {
@@ -16,6 +19,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      // brand: {
+      //   type: Sequelize.STRING
+      // },
+      // image: {
+      //   type: DataTypes.STRING
+      // },
       summary: {
         allowNull: false,
         type: Sequelize.STRING
