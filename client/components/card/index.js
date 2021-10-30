@@ -1,10 +1,12 @@
 import styles from '../../styles/Home.module.css'
 import BenefitsList from '../benefitsList'
+import { useState } from 'react'
 
 export default function Card(props) {
     console.log('card component props', props)
+    const [showBenefits, setShowBenefits] = useState(false);
     return (
-        <div className="card__container">
+        <div className="card__container" onClick={() => console.log(props.id)}>
             <div className="card__image">
                 Card Image
             </div>
@@ -15,8 +17,8 @@ export default function Card(props) {
                     <h4>Card Tagline</h4>
 
                 </div>
-                <div className="card__info-description">
-                    <p>Description blah blah blah</p>
+                <div className="card__info-summary">
+                    <p>Summary blah blah blah</p>
                 </div>
                 <BenefitsList benefits={props.benefits} />
             </div>

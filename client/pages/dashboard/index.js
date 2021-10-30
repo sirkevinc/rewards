@@ -1,6 +1,7 @@
 // import { useQuery, gql } from '@apollo/client'
 import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import styles from '../../styles/Page.module.css'
 
 import { userContext } from '../../lib/user'
@@ -33,9 +34,9 @@ export default function Dashboard() {
     }
     return (
         <div className={styles.main}>
-            IDKLOL
-
-            {data.me?<p>{data.me.email}</p>:<p>Negative...</p>}
+            <h1>Dashboard</h1>
+            <h3>Recommendations</h3>
+            <Link href='/cards'><h3>View Cards</h3></Link>
         </div>
     )
 }
