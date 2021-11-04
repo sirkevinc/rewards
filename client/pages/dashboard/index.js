@@ -35,7 +35,7 @@ export default function Dashboard() {
     return (
         <div className={styles.main}>
             <h1>Dashboard</h1>
-            <h3>Recommendations</h3>
+            <Link href='/recommendations'><h3>Recommendations</h3></Link>
             <Link href='/cards'><h3>View Cards</h3></Link>
         </div>
     )

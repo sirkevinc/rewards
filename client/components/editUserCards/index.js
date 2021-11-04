@@ -6,8 +6,7 @@ import { GET_MY_CARDS } from '../../lib/cardsQuery'
 
 export default function EditUserCards({ show }) {
     const { userInfo } = useContext(userContext);
-    const { allCards, myCards, setAllCards, setMyCards } = useContext(cardsContext);
-    const [userCardIds, setUserCardIds] = useState([]);
+    const { allCards, myCards } = useContext(cardsContext);
     const [myCardIds, setMyCardIds] = useState({});
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
@@ -68,6 +67,7 @@ export default function EditUserCards({ show }) {
                         query: GET_MY_CARDS,
                         data: {
                             me: {
+                                __typename :"User",
                                 cards: addResult
                             }
                         }
@@ -93,6 +93,7 @@ export default function EditUserCards({ show }) {
                         query: GET_MY_CARDS,
                         data: {
                             me: {
+                                __typename :"User",
                                 cards: removeResult
                             }
                         }
@@ -119,10 +120,12 @@ export default function EditUserCards({ show }) {
     useEffect(() => {
         initializeMyIds();
     }, [myCardIds])
+
+    console.log('edit', allCards)
     
     return (
         <div className={showHideClassName}>
-            Edit Cards yo...
+            Edit Cards
             {error && <h3 style={{ color: 'red' }}>{error}</h3>}
             <div className="user__cards">
                 <h3>My Cards</h3>

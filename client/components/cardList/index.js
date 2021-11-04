@@ -19,10 +19,6 @@ export default function CardList({ type }) {
             setDisplayedCards(allCards);
         }
     }, [myCards, allCards, type])
-    
-    const clear = () => {
-        setDisplayedCards(myCards || allCards);
-    }
 
     const filterHandler = (type, query) => {
         if (type === 'bank') {
@@ -49,7 +45,7 @@ export default function CardList({ type }) {
     // if (loading) return <p>Loading...</p>
     // if (error) console.log(error)
     
-    console.log('cardList display', displayedCards)
+    console.log('CardList Component', myCards)
     return (
         <div className="cardList__container">
             {/* <Filter filter={filterHandler} type={'banks'} />

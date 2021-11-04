@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         as:'users',
         foreignKey: 'cardid'
       });
-      Card.hasMany(models.Benefit, { foreignKey: 'cardid', as: 'benefits' });
+      Card.hasMany(models.Benefit, { 
+        foreignKey: 'cardid', 
+        as: 'benefits' 
+      });
     }
   };
   Card.init({

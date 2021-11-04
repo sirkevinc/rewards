@@ -9,6 +9,9 @@ const GET_ALL_CARDS = gql`
             summary
             description
             rewardType
+            benefits {
+                id
+            }
         }
     }
 `
@@ -45,6 +48,9 @@ const GET_MY_CARDS = gql`
                 summary
                 description
                 rewardType
+                benefits {
+                    id
+                }
             }
         }
     }

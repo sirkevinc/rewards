@@ -16,7 +16,7 @@ const typeDefs = gql`
         summary: String!
         description: String!
         rewardType: String!
-        benefits: [Benefit]
+        benefits: [Benefit!]
     }
 
     type Benefit {

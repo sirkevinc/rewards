@@ -13,7 +13,7 @@ export function UserContextProvider({ children }) {
         const fetchUser = async() => {
             const currentUser = await isSignedIn();
             if (currentUser) {
-                console.log('user context', currentUser, userLoading);
+                console.log('User Context', currentUser, userLoading);
                 setUserInfo(currentUser);
                 setUserLoading(false);
             }

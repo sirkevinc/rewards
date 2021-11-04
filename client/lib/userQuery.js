@@ -6,10 +6,6 @@ const MeQuery = gql`
             id
             username
             email
-            cards {
-                bank
-                name
-            }
         }
     }
 `
