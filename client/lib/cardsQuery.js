@@ -10,7 +10,11 @@ const GET_ALL_CARDS = gql`
             description
             rewardType
             benefits {
-                id
+                type
+                category
+                multiplier
+                summary
+                description            
             }
         }
     }
@@ -49,7 +53,11 @@ const GET_MY_CARDS = gql`
                 description
                 rewardType
                 benefits {
-                    id
+                    type
+                    category
+                    multiplier
+                    summary
+                    description
                 }
             }
         }

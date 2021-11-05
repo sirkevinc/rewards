@@ -22,6 +22,15 @@ const auth = jwt({
 
 app.use('/', express.json(), auth);
 
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        res.status(err.status).send({message:err.message});
+        logger.error(err);
+        return;
+    }
+    next();
+})
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
