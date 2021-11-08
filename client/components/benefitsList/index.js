@@ -6,10 +6,22 @@ import { userContext } from '../../lib/user'
 
 export default function BenefitsList({ benefits }) {
     const { userInfo } = useContext(userContext);
-    console.log(benefits)
+    console.log('BenefitsList Component', benefits)
     return (
         <div className="benefitsList__container">
-            {benefits?'test':null}
+            Benefits/Rewards:
+            {benefits?benefits.map((benefit) => {
+                const { category, description, multiplier, summary, type } = benefit;
+                return (
+                    <Benefit 
+                        category={category}
+                        description={description}
+                        multiplier={multiplier}
+                        summary={summary}
+                        type={type}
+                    />
+                )
+            }):null}
         </div>
     )
 }

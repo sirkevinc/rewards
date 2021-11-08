@@ -9,12 +9,14 @@ export default function Recommendations() {
     const { myCards } = useContext(cardsContext);
     const [showRecs, setShowRecs] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
-    const categories = ['Dining', 'Entertainment', 'Airlines', 'Hotels', 'Other Travel', 'Groceries', 'General Purchase'];
+    const [recommendations, setRecommendations] = useState([]);
+    const categories = ['dining', 'entertainment', 'airlines', 'hotels', 'travel', 'groceries', 'shopping', 'general purchase'];
     console.log('Recommendation page', selectedCategory, myCards);
 
     const categoryClickHandler = (category) => {
-        setShowRecs(!showRecs);
+        setShowRecs(true);
         setSelectedCategory(category);
+        setRecommendations(recommendationFilter(myCards, category));
     }
 
     return (
@@ -22,10 +24,16 @@ export default function Recommendations() {
             <h1 className={styles.title}>
                 Recommendations
             </h1>
-            <button onClick={() => setShowRecs(!showRecs)}>Show Recs</button>
             <p>What are you trying to use your credit card for?</p>
-            {categories.map((category) => <p key={category} onClick={() => categoryClickHandler(category)}>{category}</p>)}
-            {showRecs && <Recommendation category={selectedCategory}/>}
+            {categories.map((category) => 
+                <p 
+                    key={category} 
+                    onClick={() => categoryClickHandler(category)}
+                >
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                </p>
+            )}
+            {showRecs && <Recommendation category={selectedCategory} cards={recommendations} />}
         </div>
     )
 }

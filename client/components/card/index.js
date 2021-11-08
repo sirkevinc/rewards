@@ -5,6 +5,7 @@ import { useState } from 'react'
 export default function Card(props) {
     console.log('card component props', props)
     const [showBenefits, setShowBenefits] = useState(false);
+    const toggleBenefits = () => setShowBenefits(!showBenefits);
     return (
         <div className="card__container" onClick={() => console.log(props.id)}>
             <div className="card__image">
@@ -20,7 +21,8 @@ export default function Card(props) {
                 <div className="card__info-summary">
                     <p>Summary blah blah blah</p>
                 </div>
-                <BenefitsList benefits={props.benefits} />
+                <button onClick={() => toggleBenefits()}>Toggle Benefits</button>
+                {showBenefits && <BenefitsList benefits={props.benefits} />}
             </div>
         </div>
     )

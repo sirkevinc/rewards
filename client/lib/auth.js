@@ -6,6 +6,7 @@ import {
     HttpLink,
     gql,
 } from '@apollo/client'
+import jwt_decode from 'jwt-decode'
 import Cookies from 'js-cookie'
 
 const authContext = createContext();
@@ -40,7 +41,13 @@ function useProvideAuth() {
     };
     
     const isSignedIn = async () => {
-        if (Cookies.get('token')) {
+        const token = Cookies.get('token');
+        if (token) {
+            const { exp } = jwt_decode(token);
+            const expirationTime = (exp*1000) - 60000;
+            if (Date.now() >= expirationTime) {
+                Cookies.remove('token');
+            }
             console.log("IsSignedIn");
             const client = createApolloClient();
             const meQuery = gql `
