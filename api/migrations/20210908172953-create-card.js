@@ -1,6 +1,6 @@
 'use strict';
 
-const { DataTypes } = require("sequelize/types");
+// const { DataTypes } = require("sequelize/types");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -19,12 +19,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      // brand: {
-      //   type: Sequelize.STRING
-      // },
-      // image: {
-      //   type: DataTypes.STRING
-      // },
+      brand: {
+        type: Sequelize.STRING
+      },
+      image: {
+        type: Sequelize.STRING
+      },
       summary: {
         allowNull: false,
         type: Sequelize.STRING

@@ -11,9 +11,10 @@ export default function BenefitsList({ benefits }) {
         <div className="benefitsList__container">
             Benefits/Rewards:
             {benefits?benefits.map((benefit) => {
-                const { category, description, multiplier, summary, type } = benefit;
+                const { category, description, multiplier, summary, type, id } = benefit;
                 return (
-                    <Benefit 
+                    <Benefit
+                        key={id}
                         category={category}
                         description={description}
                         multiplier={multiplier}

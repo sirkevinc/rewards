@@ -12,11 +12,13 @@ const typeDefs = gql`
     type Card {
         id: Int!
         bank: String!
+        brand: String
         name: String!
         summary: String!
         description: String!
         rewardType: String!
         benefits: [Benefit!]
+        image: String
     }
 
     type Benefit {

@@ -7,6 +7,7 @@ const GET_ALL_CARDS = gql`
             bank
             name
             summary
+            image
             description
             rewardType
             benefits {
@@ -26,8 +27,10 @@ const GET_USER_CARDS = gql`
             cards {
                 id
                 bank
+                brand
                 name
                 summary
+                image
                 description
                 rewardType
                 benefits {
@@ -48,8 +51,10 @@ const GET_MY_CARDS = gql`
             cards {
                 id
                 bank
+                brand
                 name
                 summary
+                image
                 description
                 rewardType
                 benefits {

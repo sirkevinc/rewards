@@ -1,25 +1,27 @@
 import styles from '../../styles/Home.module.css'
 import BenefitsList from '../benefitsList'
+import CardModal from '../cardModal'
 import { useState } from 'react'
 
 export default function Card(props) {
     console.log('card component props', props)
     const [showBenefits, setShowBenefits] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const toggleModal = () => setShowModal(!showModal);
     const toggleBenefits = () => setShowBenefits(!showBenefits);
     return (
-        <div className="card__container" onClick={() => console.log(props.id)}>
+        <div className="card__container" onClick={() => toggleModal()}>
+            {showModal && <CardModal data={props} />}
             <div className="card__image">
-                Card Image
+                <img src={`/images/${props.image}.png`}/>
             </div>
             <div className="card__info">
                 <div className="card__info-main">
                     <h3>{props.name}</h3>
                     <h4>{props.bank}</h4>
-                    <h4>Card Tagline</h4>
-
                 </div>
                 <div className="card__info-summary">
-                    <p>Summary blah blah blah</p>
+                    <p>{props.summary}</p>
                 </div>
                 <button onClick={() => toggleBenefits()}>Toggle Benefits</button>
                 {showBenefits && <BenefitsList benefits={props.benefits} />}

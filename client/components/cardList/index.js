@@ -55,9 +55,18 @@ export default function CardList({ type }) {
             {displayedCards?
             <ul>
                 {displayedCards.map((card) => {
-                    const { id, bank, name, benefits } = card;
+                    const { id, bank, name, benefits, summary, description, image } = card;
                     return (
-                        <Card key={id} id={id} bank={bank} name={name} benefits={benefits} />
+                        <Card 
+                            key={id} 
+                            id={id}
+                            image={image}
+                            bank={bank} 
+                            name={name} 
+                            benefits={benefits} 
+                            summary={summary} 
+                            description={description} 
+                        />
                     )
                 })}
             </ul>

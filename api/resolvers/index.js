@@ -209,9 +209,9 @@ const resolvers = {
             }
         },
 
-        createCard: async(_, { bank, name, summary, description, rewardType }, { models: { Card } }) => {
+        createCard: async(_, { bank, name, summary, description, rewardType, brand, image }, { models: { Card } }) => {
             try { 
-                const newCard = { bank, name, summary, description, rewardType };
+                const newCard = { bank, name, summary, description, rewardType, brand, image };
                 
                 return await Card.create(newCard);
 
@@ -219,8 +219,8 @@ const resolvers = {
                 console.error(err);
             }
         },
-        updateCard: async(_, { id, bank, name, summary, description, rewardType }, { models: { User, Card } }) => {
-            const updatedCard = { bank, name, summary, description, rewardType };
+        updateCard: async(_, { id, bank, name, summary, description, rewardType, brand, image }, { models: { User, Card } }) => {
+            const updatedCard = { bank, name, summary, description, rewardType, brand, image };
             try {
                 const result = await Card.update(
                    updatedCard, 
