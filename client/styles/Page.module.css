@@ -4,6 +4,13 @@
     font-size: 3rem;
   }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
   @media (max-width: 600px) {
     /* .grid {
       width: 100%;
@@ -11,3 +18,14 @@
     } */
   }
   
+
+.dashboard__container {
+  margin: 3em 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard__container h1 {
+  text-align: center;
+  width: 100%;
+}

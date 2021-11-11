@@ -14,18 +14,21 @@ export default function Navbar() {
     }
     console.log('navbar', userInfo)
     return (
-        <nav className={styles.nav}>
-            <Link href='/'>Home</Link>
-            <Link href='/cards'>Cards</Link>
-            {userInfo?
-                <div>
-                    User: {userInfo.username}
-                    Email: {userInfo.email}
-                    <button onClick={logOutHandler}>Log Out</button>
-                </div>
-                : 
+        <nav className={styles.nav__container}>
+            <div className={styles.nav__title}>Rewards Helper</div>
+            <div className={styles.nav__links}>
+                <Link href='/'>Home</Link>
+                <Link href='/cards'>Cards</Link>
+                    {userInfo?
+                        <div>
+                            {/* User: {userInfo.username}
+                            Email: {userInfo.email} */}
+                            <button onClick={logOutHandler}>Log Out</button>
+                        </div>
+                        : 
                 <Link href='/login'>Login/Register</Link>
             }
+            </div>
         </nav>
     )
 }

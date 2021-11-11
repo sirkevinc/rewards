@@ -16,57 +16,28 @@ export default function Home() {
     }
   }, [userInfo, userLoading]);
   return (
-    <div>
+    <div className={styles.main}>
       <Head>
         <title>Rewards Helper</title>
         <meta name="description" content="Helpful tool for credit card rewards" />
         <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%B3%EF%B8%8F%3C%2Ftext%3E%3C%2Fsvg%3E" type="image/svg+xml" />
         {/* <link rel="icon" href="/credit-card.svg" /> */}
       </Head>
-      <main className={styles.main}>
-        Hi
-      </main>
-
-      {/* <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main> */}
+      <div className={styles.home__content}>
+        <header>
+          <div className={styles.home__title}>Credit card rewards simplified</div>
+        </header>
+        <section className={styles.home__description}>
+          <p>With so many credit cards offering different rewards depending on what is purchased, too many consumers fail to use their best credit cards to optimize the amount of rewards they receive.</p>
+          <p>We're here to help with that.</p>
+        </section>
+        <section className={styles.home__features}>
+          <header>Features</header>
+          <p>Create an account and manage your profile by adding your current credit cards</p>
+          <p>View detailed information about different cards and their benefits</p>
+          <p>Get recommendations on the best cards to use based on rewards</p>
+        </section>
+      </div>
     </div>
   )
 }

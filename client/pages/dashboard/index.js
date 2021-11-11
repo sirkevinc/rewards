@@ -33,7 +33,7 @@ export default function Dashboard() {
         return `${error} Please return to login page`;
     }
     return (
-        <div className={styles.main}>
+        <div className={styles.dashboard__container}>
             <h1>Dashboard</h1>
             <Link href='/recommendations'><h3>Recommendations</h3></Link>
             <Link href='/cards'><h3>View Cards</h3></Link>

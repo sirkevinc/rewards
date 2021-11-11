@@ -1,4 +1,4 @@
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/Page.module.css'
 import SignIn from '../../components/signIn'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -22,11 +22,11 @@ export default function Login() {
     }
   }, [userInfo, userLoading]);
   return (
-    <div>
+    <section className={styles.content}>
         <h1>Login Page</h1>
         {error?<p>{error.message}</p>:null}
         <SignIn errorHandler={errorHandler}/>
         <p>Don't Have an account? Register <Link href="/register">here</Link>!</p>
-    </div>
+    </section>
   );
 }

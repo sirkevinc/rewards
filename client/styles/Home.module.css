@@ -1,36 +1,116 @@
-/* .container {
+.container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 0.5em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  height: 100vh;
-} */
-
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: #f6f9fc;
 }
 
-.nav {
+.main {
+  padding: 3rem 0;
+  display: flex;
+  flex-grow: 1;
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+/* .home__container {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+} */
+
+.home__content {
+  padding: 0.35em 1.25em;
+}
+
+.home__content header {
+}
+
+.home__title {
+  width: 85%;
+  font-size: 2.75em;
+  font-weight: 300;
+}
+
+.home__description {
+  /* width: 100vw;
+  height: 12em;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  background-color: blue; */
+}
+
+.home__features {
+  position: relative;
+  background: #0a2540;
+  overflow: visible;
+  z-index: 1;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 0 0.5em 1em 0.5em;
+}
+
+.home__features:after {
+  width: 100%;
+  left: 50%;
+  margin-left: -50vw;
+  transform-origin: 0;
+  transform: skewY(6deg);
+  content: '';
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  bottom: 0;
+}
+
+.home__features header{
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.5;
+  color: #ffffff
+}
+.home__features p{
+  color: #adbdcc
+}
+
+.nav__container {
   width: 100%;
   height: 100px;
+  max-height: 100px;
   border-bottom: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
+  padding: 0 0.5em;
+  background-color: #0a2540;
+  color: #ffffff;
   top:0;
+}
+
+.nav__title {
+  width: 35%;
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
+.nav__links {
+  font-size: 0.95em;
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer {
   width: 100%;
-  height: 100px;
+  height: 75px;
   border-top: 1px solid #eaeaea;
   display: flex;
   justify-content: center;
@@ -124,9 +204,18 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 768px) {
   .grid {
     width: 100%;
     flex-direction: column;
   }
+  .nav__container {
+    padding: 0 3em;
+  }
 }
+
+
+@media (min-width: 992px) {
+
+}
+
