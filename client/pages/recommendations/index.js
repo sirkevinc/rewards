@@ -1,4 +1,4 @@
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/Page.module.css'
 import { useState, useContext } from 'react'
 import { cardsContext } from '../../lib/cards'
 import Recommendation from '../../components/recommendation'
@@ -20,8 +20,8 @@ export default function Recommendations() {
     }
 
     return (
-        <div>
-            <h1 className={styles.title}>
+        <div className={styles.content}>
+            <h1>
                 Recommendations
             </h1>
             <p>What are you trying to use your credit card for?</p>

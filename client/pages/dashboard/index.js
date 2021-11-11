@@ -35,8 +35,10 @@ export default function Dashboard() {
     return (
         <div className={styles.dashboard__container}>
             <h1>Dashboard</h1>
-            <Link href='/recommendations'><h3>Recommendations</h3></Link>
-            <Link href='/cards'><h3>View Cards</h3></Link>
+            <div className={styles.dashboard__links}>
+                <Link href='/recommendations'><h3>Recommendations</h3></Link>
+                <Link href='/cards'><h3>View Cards</h3></Link>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/Page.module.css'
 import SignUp from '../../components/signUp'
 import { useAuth } from '../../lib/auth.js'
 import { useRouter } from 'next/router'
@@ -22,7 +22,7 @@ export default function Register() {
   }, [userInfo, userLoading]);
 
   return (
-    <div>
+    <div className={styles.content}>
         <h1>Register</h1>
         {error?<p>{error.message}</p>:null}
         <SignUp errorHandler={errorHandler}/>

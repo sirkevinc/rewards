@@ -30,13 +30,13 @@ export default function Cards() {
     console.log('Cards page');
 
     return (
-        <div>
-            <h1 className={styles.title}>Test</h1>
+        <div className={styles.content}>
+            <h1 className={styles.title}>Credit Cards</h1>
             {userInfo?
                 <div>
                     <button onClick={allSwitch}>{listType==='MyCards'?<b>Show All</b>:<b>Show My Cards</b>}</button>
                     {listType === 'MyCards'? <h3>My Cards</h3>:<h3>All Cards</h3>}
-                </div>:<div>All Cards</div>}
+                </div>:<div>Displaying All</div>}
                 <CardList type={listType} />
                 {/* {userInfo?<CardList type={'UserCardsQuery'}/>:<CardList type={'AllCardsQuery'}/>} */}
             {/* <ul>

@@ -5,6 +5,7 @@
   }
 
 .content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,12 +21,15 @@
   
 
 .dashboard__container {
+  width: 100%;
   margin: 3em 0;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .dashboard__container h1 {
   text-align: center;
-  width: 100%;
+}
+
+.dashboard__links {
+  display: flex;
+  justify-content: space-around;
 }
