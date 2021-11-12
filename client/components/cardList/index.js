@@ -6,6 +6,8 @@ import Filter from '../filter'
 import EditUserCards from '../editUserCards'
 import { cardsContext } from '../../lib/cards';
 
+import styles from '../../styles/Component.module.css'
+
 export default function CardList({ type }) {
     // const { userInfo } = useContext(userContext);
     const { allCards, myCards } = useContext(cardsContext);
@@ -47,13 +49,13 @@ export default function CardList({ type }) {
     
     console.log('CardList Component', myCards)
     return (
-        <div className="cardList__container">
+        <div className={styles.cardList__container}>
             {/* <Filter filter={filterHandler} type={'banks'} />
             <button onClick={clear}>Clear</button> */}
             {type==='MyCards'&&<button onClick={editToggle}>{showEdit?<p>Finish Editing</p>:<p>Edit My Cards</p>}</button>}
             {showEdit && <EditUserCards show={showEdit} />}
             {displayedCards?
-            <ul>
+            <div>
                 {displayedCards.map((card) => {
                     const { id, bank, name, benefits, summary, description, image } = card;
                     return (
@@ -69,7 +71,7 @@ export default function CardList({ type }) {
                         />
                     )
                 })}
-            </ul>
+            </div>
             :null}
         </div>
     )

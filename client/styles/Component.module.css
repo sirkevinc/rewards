@@ -1,0 +1,15 @@
+.cardList__container {
+    width: 100%;
+    border: black 1px solid;
+    margin-top: 1em;
+}
+
+.card__container {
+    padding-top: 1em;
+}
+
+.card__image {
+    width: 100%;
+    max-width: 75%;
+    height: auto;
+}

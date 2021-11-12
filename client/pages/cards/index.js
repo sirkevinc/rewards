@@ -31,7 +31,7 @@ export default function Cards() {
 
     return (
         <div className={styles.content}>
-            <h1 className={styles.title}>Credit Cards</h1>
+            <h1 className={styles.cards__title}>Credit Cards</h1>
             {userInfo?
                 <div>
                     <button onClick={allSwitch}>{listType==='MyCards'?<b>Show All</b>:<b>Show My Cards</b>}</button>

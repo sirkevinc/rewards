@@ -1,4 +1,4 @@
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/Component.module.css'
 import BenefitsList from '../benefitsList'
 import CardModal from '../cardModal'
 import { useState } from 'react'
@@ -10,10 +10,10 @@ export default function Card(props) {
     const toggleModal = () => setShowModal(!showModal);
     const toggleBenefits = () => setShowBenefits(!showBenefits);
     return (
-        <div className="card__container" onClick={() => toggleModal()}>
+        <div className={styles.card__container} onClick={() => toggleModal()}>
             {showModal && <CardModal data={props} />}
-            <div className="card__image">
-                <img src={`/images/${props.image}.png`}/>
+            <div>
+                <img className={styles.card__image} src={`/images/${props.image}.png`} alt={props.image} />
             </div>
             <div className="card__info">
                 <div className="card__info-main">
