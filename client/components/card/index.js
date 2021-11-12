@@ -11,7 +11,7 @@ export default function Card(props) {
     const toggleBenefits = () => setShowBenefits(!showBenefits);
     return (
         <div className={styles.card__container}>
-            <div className={showModal && styles.cardModal__background}>
+            <div className={`${showModal && styles.cardModal__background}`}>
                 {showModal && <CardModal data={props} toggleModal={() => toggleModal()} />}
             </div>
             <div onClick={() => toggleModal()}>
@@ -25,7 +25,7 @@ export default function Card(props) {
                 <div className="card__info-summary">
                     <p>{props.summary}</p>
                 </div>
-                <button onClick={() => toggleBenefits()}>{showBenefits?'Hide Benefits':'Show Benefits'}</button>
+                <button onClick={() => toggleBenefits()}>{showBenefits?'Hide Benefits':'Show All Benefits'}</button>
                 {showBenefits && <BenefitsList benefits={props.benefits} />}
             </div>
         </div>

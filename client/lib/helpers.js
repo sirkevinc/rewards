@@ -21,7 +21,7 @@ export const recommendationFilter = (cards, category) => {
     for (let i = 0; i < cards.length; i++) {
         for (let j = 0; j < cards[i]['benefits'].length; j++) {
             if (cards[i]['benefits'][j]['category'] === category) {
-                if (cards[i]['benefits'][j]['type'] === 'points') {
+                if (cards[i]['benefits'][j]['type'] === 'points' || cards[i]['benefits'][j]['type'] === 'cashback') {
                     const currentBenefit = cards[i]['benefits'][j];
                     const totalPoints = cards[i]['benefits'][j]['multiplier'];
                     const pointMatch = [cards[i], currentBenefit, totalPoints];

@@ -21,18 +21,21 @@ export default function Recommendations() {
 
     return (
         <div className={styles.content}>
-            <h1>
+            <h1 className={styles.cards__title}>
                 Recommendations
             </h1>
             <p>What are you trying to use your credit card for?</p>
-            {categories.map((category) => 
-                <p 
-                    key={category} 
-                    onClick={() => categoryClickHandler(category)}
-                >
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
-                </p>
-            )}
+            <div className='categories__container'>
+                {categories.map((category) => 
+                    <div
+                        className='category'
+                        key={category} 
+                        onClick={() => categoryClickHandler(category)}
+                    >
+                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </div>
+                )}
+            </div>
             {showRecs && <Recommendation category={selectedCategory} cards={recommendations} />}
         </div>
     )
