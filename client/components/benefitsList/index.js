@@ -3,6 +3,8 @@ import { gql, useQuery } from '@apollo/client'
 import { useContext, useState, useEffect } from 'react'
 import { userContext } from '../../lib/user'
 
+import styles from '../../styles/Component.module.css'
+
 
 export default function BenefitsList({ benefits }) {
     const { userInfo } = useContext(userContext);
@@ -11,10 +13,10 @@ export default function BenefitsList({ benefits }) {
         <div className="benefitsList__container">
             Benefits/Rewards:
             {benefits?benefits.map((benefit) => {
-                const { category, description, multiplier, summary, type, id } = benefit;
+                const { category, description, multiplier, summary, type } = benefit;
                 return (
                     <Benefit
-                        key={id}
+                        key={summary}
                         category={category}
                         description={description}
                         multiplier={multiplier}

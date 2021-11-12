@@ -13,9 +13,10 @@
 }
 
 .cards__content {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cards__title {

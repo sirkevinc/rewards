@@ -30,7 +30,7 @@ export default function Cards() {
     console.log('Cards page');
 
     return (
-        <div className={styles.content}>
+        <div className={styles.cards__content}>
             <h1 className={styles.cards__title}>Credit Cards</h1>
             {userInfo?
                 <div>
