@@ -26,6 +26,7 @@ export default function Home() {
       <div className={styles.home__content}>
         <header>
           <div className={styles.home__title}>Credit card rewards simplified</div>
+          {/* <img src={`/images/credit-card.svg`} /> */}
         </header>
         <section className={styles.home__description}>
           <p>With so many credit cards offering different rewards depending on what is purchased, too many consumers fail to use their best credit cards to optimize the amount of rewards they receive.</p>

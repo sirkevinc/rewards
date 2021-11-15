@@ -23,14 +23,11 @@ export default function Cards() {
             setListType('MyCards')
         }
     }
-    
-    // const filterHandler = () => {
-    // }
 
     console.log('Cards page');
 
     return (
-        <div className={styles.cards__content}>
+        <div className={styles.content}>
             <h1 className={styles.cards__title}>Credit Cards</h1>
             {userInfo?
                 <div>
@@ -38,14 +35,6 @@ export default function Cards() {
                     {listType === 'MyCards'? <h3>My Cards</h3>:<h3>All Cards</h3>}
                 </div>:<div>Displaying All</div>}
                 <CardList type={listType} />
-                {/* {userInfo?<CardList type={'UserCardsQuery'}/>:<CardList type={'AllCardsQuery'}/>} */}
-            {/* <ul>
-            {data.allCards.map((card) => {
-                return (
-                    <li key={card.id}>{card.name}</li>
-                )
-            })}
-            </ul> */}
         </div>
     )
 }

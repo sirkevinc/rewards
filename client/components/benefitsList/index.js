@@ -11,7 +11,7 @@ export default function BenefitsList({ benefits }) {
     console.log('BenefitsList Component', benefits)
     return (
         <div className="benefitsList__container">
-            Benefits/Rewards:
+            <h4>Benefits/Rewards:</h4>
             {benefits?benefits.map((benefit) => {
                 const { category, description, multiplier, summary, type } = benefit;
                 return (
