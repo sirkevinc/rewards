@@ -1,15 +1,12 @@
-import { useState } from 'react'
 import { useAuth } from '../../lib/auth.js'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
+import styles from '../../styles/Component.module.css'
+
 const SignUp = (props) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-    // const onSubmit = data => console.log(data);
-    // const onError = (errors, e) => console.log(errors, e)
     const router = useRouter();
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
     
     const { signUp } = useAuth();
 
@@ -27,7 +24,7 @@ const SignUp = (props) => {
     }
   
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.register__container} onSubmit={handleSubmit(onSubmit)}>
             <input 
                 placeholder='User Name'
                 {...register('username', { 

@@ -1,16 +1,17 @@
 .cardList__container {
     width: 100%;
-    border: black 1px solid;
-    border-radius: 20px;
     margin-top: 1em;
     padding: 0.5em;
 }
 
 .card__container {
+    width: 100%;
     padding-top: 1em;
 }
 
 .card__image {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     max-width: 75%;
     height: auto;
@@ -48,4 +49,8 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+.register__container {
+    text-align: center;
 }

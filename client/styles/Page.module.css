@@ -6,10 +6,9 @@
 
 .content {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   padding-top: 2em;
 }
@@ -47,4 +46,34 @@
 .dashboard__links {
   display: flex;
   justify-content: space-around;
+}
+
+.recommendations__container {
+
+}
+
+.recommendations__categories {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recommendation__category {
+  border: 1px solid black;
+  width: 32%;
+  height: 5em;
+  margin: 0.5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }

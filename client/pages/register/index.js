@@ -1,6 +1,6 @@
 import styles from '../../styles/Page.module.css'
 import SignUp from '../../components/signUp'
-import { useAuth } from '../../lib/auth.js'
+// import { useAuth } from '../../lib/auth.js'
 import { useRouter } from 'next/router'
 
 import { userContext } from '../../lib/user'

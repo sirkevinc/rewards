@@ -10,8 +10,6 @@ export default function Recommendation({ category, cards }) {
             The best cards to use for {category} purchases (in order) are:
 
             <h3>Best for points/cashback:</h3>
-
-            <ul>
                 {pointMatches.map((match) => {
                     const { id, bank, name, benefits, image} = match[0];
                     const benefit = match[1];
@@ -25,20 +23,22 @@ export default function Recommendation({ category, cards }) {
                         </div>
                     )
                 })}
-            </ul>
-
-            <h3>Other {category} benefits you might enjoy:</h3>
-                {otherMatches.map((match) => {
-                    const { id, bank, name, benefits, image} = match[0];
-                    const benefit = match[1];
-                    return (
-                        <li key={id}>
-                            <Card id={id} bank={bank} name={name} benefits={benefits} image={image} />
-                            <p>{benefit.summary}</p>
-                            <p>{benefit.description}</p>
-                        </li>
-                    )
-                })}
+            {otherMatches.length !== 0 &&
+                <div>
+                    <h3>Other {category} benefits you might enjoy:</h3>
+                        {otherMatches.map((match) => {
+                            const { id, bank, name, benefits, image} = match[0];
+                            const benefit = match[1];
+                            return (
+                                <li key={id}>
+                                    <Card id={id} bank={bank} name={name} benefits={benefits} image={image} />
+                                    <p>{benefit.summary}</p>
+                                    <p>{benefit.description}</p>
+                                </li>
+                            )
+                        })}
+                </div>
+            }
         </div>
     )
 }

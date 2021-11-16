@@ -10,7 +10,7 @@ export default function Recommendations() {
     const [showRecs, setShowRecs] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
     const [recommendations, setRecommendations] = useState([]);
-    const categories = ['dining', 'entertainment', 'airlines', 'hotels', 'travel', 'groceries', 'shopping', 'general purchase'];
+    const categories = ['dining', 'airlines', 'hotels', 'travel', 'groceries', 'shopping', 'general'];
     console.log('Recommendation page', selectedCategory, myCards);
 
     const categoryClickHandler = (category) => {
@@ -25,14 +25,15 @@ export default function Recommendations() {
                 Recommendations
             </h1>
             <p>What are you trying to use your credit card for?</p>
-            <div className='categories__container'>
+            <div className={styles.recommendations__categories}>
                 {categories.map((category) => 
                     <div
-                        className='category'
+                        className={styles.recommendation__category}
                         key={category} 
                         onClick={() => categoryClickHandler(category)}
                     >
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                        <img src={`/icons/${category}.svg`} className={styles.icon} />
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
                     </div>
                 )}
             </div>

@@ -7,7 +7,7 @@ import styles from '../../styles/Component.module.css'
 
 
 export default function BenefitsList({ benefits }) {
-    const { userInfo } = useContext(userContext);
+    // const { userInfo } = useContext(userContext);
     console.log('BenefitsList Component', benefits)
     return (
         <div className="benefitsList__container">
