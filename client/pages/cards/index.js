@@ -31,7 +31,7 @@ export default function Cards() {
             <h1 className={styles.cards__title}>Credit Cards</h1>
             {userInfo?
                 <div>
-                    <button onClick={allSwitch}>{listType==='MyCards'?<b>Show All</b>:<b>Show My Cards</b>}</button>
+                    <button className={styles.cards__button}onClick={allSwitch}>{listType==='MyCards'?'Show All':'Show My Cards'}</button>
                     {listType === 'MyCards'? <h3>My Cards</h3>:<h3>All Cards</h3>}
                 </div>:<div>Displaying All</div>}
                 <CardList type={listType} />

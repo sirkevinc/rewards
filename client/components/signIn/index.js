@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useAuth } from '../../lib/auth.js'
 import { useRouter } from 'next/router'
 
+import styles from '../../styles/Component.module.css'
+
 const SignIn = (props) => {
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -28,7 +30,7 @@ const SignIn = (props) => {
       }
     }
     return (
-      <div>
+      <div className={styles.signin__container}>
         <form onSubmit={onSubmit}>
           <input
             type="text"

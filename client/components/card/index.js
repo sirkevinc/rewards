@@ -25,7 +25,7 @@ export default function Card(props) {
                 <div className="card__info-summary">
                     <p>{props.summary}</p>
                 </div>
-                <button onClick={() => toggleBenefits()}>{showBenefits?'Hide Benefits':'Show All Benefits'}</button>
+                <button className={styles.card__button} onClick={() => toggleBenefits()}>{showBenefits?'Hide Benefits':'Show All Benefits'}</button>
                 {showBenefits && <BenefitsList benefits={props.benefits} />}
             </div>
         </div>

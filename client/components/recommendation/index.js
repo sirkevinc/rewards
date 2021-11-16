@@ -8,7 +8,8 @@ export default function Recommendation({ category, cards }) {
     return (
         <div className='recommendations__container'>
             The best cards to use for {category} purchases (in order) are:
-
+            {pointMatches.length !== 0 ? <div>
+            
             <h3>Best for points/cashback:</h3>
                 {pointMatches.map((match) => {
                     const { id, bank, name, benefits, image} = match[0];
@@ -17,12 +18,14 @@ export default function Recommendation({ category, cards }) {
                     return (
                         <div key={id}>
                             <Card id={id} bank={bank} name={name} benefits={benefits} image={image} />
-                            <h3>{reward}x per dollar spent</h3>
+                            <h3>{reward}x per dollar spent on {category}</h3>
                             <p>{benefit.summary}</p>
                             <p>{benefit.description}</p>
                         </div>
                     )
                 })}
+            </div>: <h3>No cards found that offer bonus rewards for {category} purchases</h3>
+            }
             {otherMatches.length !== 0 &&
                 <div>
                     <h3>Other {category} benefits you might enjoy:</h3>

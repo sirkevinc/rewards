@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
 import { userContext } from '../../lib/user'
 import { cardsContext } from '../../lib/cards'
-import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import { GET_MY_CARDS } from '../../lib/cardsQuery'
+
+import styles from '../../styles/Component.module.css'
 
 export default function EditUserCards({ show }) {
     const { userInfo } = useContext(userContext);
@@ -120,23 +122,19 @@ export default function EditUserCards({ show }) {
     useEffect(() => {
         initializeMyIds();
     }, [myCardIds])
-
-    console.log('edit', allCards)
     
     return (
-        <div className={showHideClassName}>
-            Edit Cards
+        <div className={styles.editUserCards__container}>
             {error && <h3 style={{ color: 'red' }}>{error}</h3>}
             <div className="user__cards">
                 <h3>My Cards</h3>
                 {myCards.map(card => {
                     return (
                         <div key={card.id}>
-                            <p>{card.id}</p>
-                            <p>{card.bank}</p>
-                            <p>{card.name}</p>
+                            <p><strong>{card.bank}</strong></p>
+                            <p><strong>{card.name}</strong></p>
                             <p>{card.summary}</p>
-                            <button onClick={() => editHandler('remove', card.id, userInfo.id, card)}>Remove Card</button>
+                            <button className={styles.card__button}onClick={() => editHandler('remove', card.id, userInfo.id, card)}>Remove Card</button>
                         </div>
                     )
                 })}
@@ -149,11 +147,10 @@ export default function EditUserCards({ show }) {
                     } else {
                         return (
                             <div key={card.id}>
-                                <p>{card.id}</p>
-                                <p>{card.bank}</p>
-                                <p>{card.name}</p>
+                                <p><strong>{card.bank}</strong></p>
+                                <p><strong>{card.name}</strong></p>
                                 <p>{card.summary}</p>
-                                <button onClick={() => editHandler('add', card.id, userInfo.id, card)}>Add Card</button>
+                                <button className={styles.card__button} onClick={() => editHandler('add', card.id, userInfo.id, card)}>Add Card</button>
                             </div>
                         )
                     }

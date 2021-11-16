@@ -4,8 +4,38 @@
     padding: 0.5em;
 }
 
+
+.edit__button {
+    display: block;
+    margin: -1.5em auto 0 auto;
+    padding: 0.3em .95em;
+    border: 0.1em solid #000000;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+    
+}
+.card__button {
+    display: inline-block;
+    padding: 0.3em .95em;
+    border: 0.1em solid #000000;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
 .card__container {
-    width: 100%;
     padding-top: 1em;
 }
 
@@ -54,3 +84,22 @@
 .register__container {
     text-align: center;
 }
+
+.register__container input {
+    display: inline-block;
+    padding: 0.3em .95em;
+    border: 0.1em solid #000000;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .login__container {
+      text-align: center;
+  }

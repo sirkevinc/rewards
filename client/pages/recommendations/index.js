@@ -8,7 +8,7 @@ import { recommendationFilter } from '../../lib/helpers'
 export default function Recommendations() {
     const { myCards } = useContext(cardsContext);
     const [showRecs, setShowRecs] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState();
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [recommendations, setRecommendations] = useState([]);
     const categories = ['dining', 'airlines', 'hotels', 'travel', 'groceries', 'shopping', 'general'];
     console.log('Recommendation page', selectedCategory, myCards);
@@ -28,12 +28,15 @@ export default function Recommendations() {
             <div className={styles.recommendations__categories}>
                 {categories.map((category) => 
                     <div
-                        className={styles.recommendation__category}
+                        className={
+                            selectedCategory === category ? `${styles.recommendations__category} ${styles.selected}`: 
+                            styles.recommendations__category
+                        }
                         key={category} 
                         onClick={() => categoryClickHandler(category)}
                     >
                         <img src={`/icons/${category}.svg`} className={styles.icon} />
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                        <div>{category.charAt(0).toUpperCase() + category.slice(1)}</div>
                     </div>
                 )}
             </div>

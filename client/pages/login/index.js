@@ -23,10 +23,12 @@ export default function Login() {
   }, [userInfo, userLoading]);
   return (
     <section className={styles.content}>
-        <h1>Login Page</h1>
+      <div className={styles.login__container}>
+        <h1>Login</h1>
         {error?<p>{error.message}</p>:null}
         <SignIn errorHandler={errorHandler}/>
         <p>Don't Have an account? Register <Link href="/register">here</Link>!</p>
+      </div>
     </section>
   );
 }

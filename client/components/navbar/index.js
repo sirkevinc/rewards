@@ -17,7 +17,7 @@ export default function Navbar() {
         <nav className={styles.nav__container}>
             <div className={styles.nav__title}>Rewards Helper</div>
             <div className={styles.nav__links}>
-                <Link href='/'>Home</Link>
+                {userInfo ? <Link href='/dashboard'>Dashboard</Link>: <Link href='/'>Home</Link>}
                 <Link href='/cards'>Cards</Link>
                     {userInfo?
                         <div>

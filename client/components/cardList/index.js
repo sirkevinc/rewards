@@ -47,7 +47,7 @@ export default function CardList({ type }) {
     console.log('CardList Component', myCards)
     return (
         <div className={styles.cardList__container}>
-            {type==='MyCards'&&<button onClick={editToggle}>{showEdit?<p>Finish Editing</p>:<p>Edit My Cards</p>}</button>}
+            {type==='MyCards'&& <button className={styles.edit__button}onClick={editToggle}>{showEdit?'Finish Editing':'Edit'}</button>}
             {showEdit && <EditUserCards show={showEdit} />}
             {displayedCards?
             <div>
