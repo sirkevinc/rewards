@@ -103,3 +103,40 @@
   .login__container {
       text-align: center;
   }
+
+
+@media (min-width: 768px) {
+    /* .card__image {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 80%;
+        height: auto;
+    } */
+    .card__container {
+        display: flex;
+    }
+
+    .card__container .card__image {
+        width: 25em;
+    }
+
+    .card__info {
+
+    }
+    .card__info-main {
+        width: 100%;
+    }
+    .card__info-summary {}
+    .recommendation__container {
+        max-width: 55%;
+        min-width: 55%;
+    }
+}
+  
+  
+  @media (min-width: 992px) {
+  
+  }
+  
+  

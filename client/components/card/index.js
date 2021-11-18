@@ -17,12 +17,12 @@ export default function Card(props) {
             <div onClick={() => toggleModal()}>
                 <img className={styles.card__image} src={`/images/${props.image}.png`} alt={props.image} />
             </div>
-            <div className="card__info">
-                <div className="card__info-main">
+            <div className={styles.card__info}>
+                <div className={styles.card__info['-main']}>
                     <h3>{props.name}</h3>
                     <h4>{props.bank}</h4>
                 </div>
-                <div className="card__info-summary">
+                <div className={styles.card__info['-summary']}>
                     <p>{props.summary}</p>
                 </div>
                 <button className={styles.card__button} onClick={() => toggleBenefits()}>{showBenefits?'Hide Benefits':'Show All Benefits'}</button>

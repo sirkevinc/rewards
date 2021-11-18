@@ -2,8 +2,8 @@
   "development": {
     "username": "postgres",
     "password": "password",
-    "database": "reward_development",
-    "host": "127.0.0.1",
+    "database": "rewards_db",
+    "host": "host.docker.internal",
     "dialect": "postgres"
   },
   "test": {

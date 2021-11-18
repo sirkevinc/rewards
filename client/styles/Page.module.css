@@ -43,10 +43,10 @@
 }
 
   @media (max-width: 600px) {
-    /* .grid {
+    .grid {
       width: 100%;
       flex-direction: column;
-    } */
+    }
   }
   
 
@@ -83,7 +83,7 @@
   transition: all 0.2s;
 }
 .recommendations__container {
-
+  width: 100%;
 }
 
 .recommendations__categories {

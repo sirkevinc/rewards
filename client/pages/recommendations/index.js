@@ -6,7 +6,7 @@ import Recommendation from '../../components/recommendation'
 import { recommendationFilter } from '../../lib/helpers'
 
 export default function Recommendations() {
-    const { myCards } = useContext(cardsContext);
+    const { myCards, allCards } = useContext(cardsContext);
     const [showRecs, setShowRecs] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [recommendations, setRecommendations] = useState([]);
@@ -16,7 +16,7 @@ export default function Recommendations() {
     const categoryClickHandler = (category) => {
         setShowRecs(true);
         setSelectedCategory(category);
-        setRecommendations(recommendationFilter(myCards, category));
+        setRecommendations(recommendationFilter(myCards || allCards, category));
     }
 
     return (

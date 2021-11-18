@@ -94,7 +94,7 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  padding: 0 0.5em;
+  padding: 0 0.5em 0 1em;
   background-color: #0a2540;
   color: #ffffff;
   top:0;
@@ -117,7 +117,7 @@
   display: inline-block;
   padding: 0.3em .95em;
   border: 0.1em solid #000000;
-  margin: 0 0.3em 0.3em 0;
+  margin: 0 0.3em 0.3em  0;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -225,12 +225,11 @@
 }
 
 @media (min-width: 768px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  .home__top {
+    margin: 2% 10%;
   }
-  .nav__container {
-    padding: 0 3em;
+  .home__features {
+    padding: 2% 5%;
   }
 }
 
