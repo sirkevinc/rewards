@@ -106,13 +106,6 @@
 
 
 @media (min-width: 768px) {
-    /* .card__image {
-        display: block;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 80%;
-        height: auto;
-    } */
     .card__container {
         display: flex;
     }
@@ -128,10 +121,19 @@
         width: 100%;
     }
     .card__info-summary {}
-    .recommendation__container {
-        max-width: 55%;
-        min-width: 55%;
+    .recommendation__container .card__container {
+        display: block;
     }
+    .recommendation__container .card__image {
+        margin: 0;
+    }
+    .recommendation__container {
+        width: 75%;
+    }
+    .cardModal__content img {
+        max-width: 35%;
+    }
+
 }
   
   
