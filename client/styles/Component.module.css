@@ -104,7 +104,9 @@
       text-align: center;
   }
 
-
+.editUserCards__container img {
+    max-width: 250px;
+}
 @media (min-width: 768px) {
     .card__container {
         display: flex;
@@ -120,7 +122,9 @@
     .card__info-main {
         width: 100%;
     }
-    .card__info-summary {}
+    .card__info-summary {
+
+    }
     .recommendation__container .card__container {
         display: block;
     }
@@ -132,6 +136,18 @@
     }
     .cardModal__content img {
         max-width: 35%;
+    }
+
+    .editUserCards__container {
+        margin: 0 5em;
+    }
+
+    .editUserCards__container div {
+        margin: 0 0 1em 0;
+    }
+
+    .editUserCards__container img {
+        max-width: 275px;
     }
 
 }

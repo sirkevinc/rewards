@@ -122,7 +122,7 @@ export default function EditUserCards({ show }) {
     useEffect(() => {
         initializeMyIds();
     }, [myCardIds])
-    
+    console.log(myCards, 'slkdjfklsdjfksldkfjkl')
     return (
         <div className={styles.editUserCards__container}>
             {error && <h3 style={{ color: 'red' }}>{error}</h3>}
@@ -131,6 +131,7 @@ export default function EditUserCards({ show }) {
                 {myCards.map(card => {
                     return (
                         <div key={card.id}>
+                            <img src={`/images/${card.image}.png`}/>
                             <p><strong>{card.bank}</strong></p>
                             <p><strong>{card.name}</strong></p>
                             <p>{card.summary}</p>
@@ -147,6 +148,7 @@ export default function EditUserCards({ show }) {
                     } else {
                         return (
                             <div key={card.id}>
+                                <img src={`/images/${card.image}.png`}/>
                                 <p><strong>{card.bank}</strong></p>
                                 <p><strong>{card.name}</strong></p>
                                 <p>{card.summary}</p>
