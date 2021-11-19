@@ -107,6 +107,11 @@
 .editUserCards__container img {
     max-width: 250px;
 }
+
+.editUserCards__container div {
+    margin: 0 0 1em 0;
+}
+
 @media (min-width: 768px) {
     .card__container {
         display: flex;
@@ -142,12 +147,8 @@
         margin: 0 5em;
     }
 
-    .editUserCards__container div {
-        margin: 0 0 1em 0;
-    }
-
     .editUserCards__container img {
-        max-width: 275px;
+        max-width: 300px;
     }
 
 }
