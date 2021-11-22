@@ -20,10 +20,6 @@ const SignIn = (props) => {
         } else {
           props.errorHandler(null);
           router.push('/dashboard');
-          // setUserInfo("Signing In")
-          // setUserLoading(false)
-
-          // window.location.href="http://localhost:3000/dashboard"
         }
       } catch(err) {
         console.error(err);        
