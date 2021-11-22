@@ -30,7 +30,7 @@ export const useAuth = () => {
 function useProvideAuth() {
     const createApolloClient = () => {
         const link = new HttpLink({
-            uri: 'http://localhost:4000/graphql',
+            uri: 'https://secure-meadow-00684.herokuapp.com/graphql',
             headers: getAuthHeaders(),
         })
 
