@@ -84,7 +84,7 @@ module.exports = {
       id: 8,
       bank: 'American Express',
       name: 'Green',
-      image: 'amex_gold',
+      image: 'amex_green',
       summary: 'Get rewarded for traveling',
       description: 'Reward yourself on travel purchases from flights, hotels, transit, and dining',
       rewardType: 'membership reward',

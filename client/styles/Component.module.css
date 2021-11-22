@@ -1,9 +1,71 @@
+.nav__container {
+    width: 100%;
+    height: 100px;
+    max-height: 100px;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 0 0.5em 0 1em;
+    background-color: #0a2540;
+    color: #ffffff;
+    top:0;
+  }
+  
+.nav__title {
+    width: 35%;
+    font-weight: 600;
+    font-size: 1.15em;
+}
+  
+.nav__links {
+    font-size: 0.95em;
+    width: 65%;
+    display: flex;
+    justify-content: space-around;
+}
+  
+.nav__container button {
+    display: inline-block;
+    padding: 0.3em .95em;
+    border: 0.1em solid #000000;
+    margin: 0 0.3em 0.3em  0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.footer {
+    width: 100%;
+    height: 75px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin__container {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signin__container input {
+    max-width: 12em;
+    margin-top: 1.5em;
+}
+
 .cardList__container {
     width: 100%;
     margin-top: 1em;
     padding: 0.5em;
 }
-
 
 .edit__button {
     display: block;

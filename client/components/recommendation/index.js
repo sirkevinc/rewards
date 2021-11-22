@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import { recommendationFilter } from '../../lib/helpers'
 import Card from '../card'
 
 import styles from '../../styles/Component.module.css'
 
 export default function Recommendation({ category, cards }) {
     const { pointMatches, otherMatches } = cards;
-    console.log('Recommendation component', otherMatches, pointMatches)
+    // console.log('Recommendation component', otherMatches, pointMatches)
+
     return (
         <div className={styles.recommendation__container}>
             The best cards to use for {category} purchases (in order) are:

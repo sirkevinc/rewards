@@ -6,6 +6,7 @@
     },
     "_comment_api_prebuild": "cd api && npm install",
     "_comment_api_start": "cd api && npm start",
+    "_comment-api_postbuild": "cd api && npm run unseed && npm run seed",
     "_comment_client-prebuild": "cd client && npm install && npm run build",
     "_comment_client-start": "cd client && npm start"
   }

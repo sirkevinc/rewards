@@ -1,16 +1,38 @@
 .title {
     margin: 0;
     line-height: 1.15;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
 .content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   padding-top: 2em;
+}
+
+.login__container {
+  text-align: center;
+}
+
+.login__container a {
+  color: #2A5DB0;
+}
+
+.login__container button {
+  display: inline-block;
+  padding: 0.3em .95em;
+  border: 0.1em solid #000000;
+  margin: 1em 0.3em 0.3em 0.25em;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
 }
 
 .cards__button {
@@ -42,13 +64,20 @@
   text-align: center;;
 }
 
-  @media (max-width: 600px) {
-    .grid {
-      width: 100%;
-      flex-direction: column;
-    }
+@media (min-width: 768px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
   }
-  
+  .nav__container {
+    padding: 0 3em;
+  }
+}
+
+
+@media (min-width: 992px) {
+
+}
 
 .dashboard__container {
   width: 100%;
@@ -64,24 +93,6 @@
   justify-content: space-around;
 }
 
-.login__container {
-  text-align: center;
-}
-
-.login__container button {
-  display: inline-block;
-  padding: 0.3em .95em;
-  border: 0.1em solid #000000;
-  margin: 1em 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  color: #000000;
-  text-align: center;
-  transition: all 0.2s;
-}
 .recommendations__container {
   width: 100%;
 }

@@ -1,4 +1,4 @@
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/Component.module.css'
 import { useContext } from 'react'
 import { userContext } from '../../lib/user'
 import { useAuth } from '../../lib/auth'
@@ -12,7 +12,7 @@ export default function Navbar() {
         signOut();
         window.location.href="http://localhost:3000/"
     }
-    console.log('navbar', userInfo)
+    // console.log('navbar', userInfo)
     return (
         <nav className={styles.nav__container}>
             <div className={styles.nav__title}>Rewards Helper</div>
@@ -21,8 +21,6 @@ export default function Navbar() {
                 <Link href='/cards'>Cards</Link>
                     {userInfo?
                         <div>
-                            {/* User: {userInfo.username}
-                            Email: {userInfo.email} */}
                             <button onClick={logOutHandler}>Log Out</button>
                         </div>
                         : 

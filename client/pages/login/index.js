@@ -21,13 +21,14 @@ export default function Login() {
       router.push('/dashboard');
     }
   }, [userInfo, userLoading]);
+
   return (
     <section className={styles.content}>
-      <div className={styles.login__container}>
-        <h1>Login</h1>
-        {error?<p>{error.message}</p>:null}
-        <SignIn errorHandler={errorHandler}/>
-        <p>Don't Have an account? Register <Link href="/register">here</Link>!</p>
+        <h1 className={styles.title}>Login</h1>
+        <div className={styles.login__container}>
+          {error?<p>{error.message}</p>:null}
+          <SignIn errorHandler={errorHandler}/>
+          <p>Don't Have an account? Register <Link className={styles.link} href="/register">here</Link>!</p>
       </div>
     </section>
   );
