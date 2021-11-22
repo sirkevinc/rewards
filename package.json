@@ -1,7 +1,8 @@
 {
     "scripts": {
-      "heroku-prebuild": "cd api && npm install && cd .. && cd client && npm run build",
-      "start": "cd api && npm start && cd .. && cd client && npm start"
+      "heroku-prebuild": "cd api && npm install",
+      "start": "cd api && npm start",
+      "heroku-postbuild": "cd client && npm install && npm run build"
+    }
   }
-}
   
