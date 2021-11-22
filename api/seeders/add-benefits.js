@@ -94,6 +94,17 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        cardid: 3,
+        category: 'other',
+        type: 'other',
+        multiplier: 0,
+        summary: 'Lower your interest rate by 2% each year',
+        description: 'You will automatically be considered for an APR reduction by 2% when you pay on time and spend at least $1,000 on your card by your next account anniversary, until your APR reaches the Prime Rate plus 9.74% (currently 12.99% variable APR based on the Prime Rate of 3.25% as of 2/4/2021). Your final APR reduction could be less than 2% depending on the APR you receive with your card',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+
+      {
         cardid: 4,
         category: 'hotel',
         type: 'credit',

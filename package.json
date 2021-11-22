@@ -4,6 +4,15 @@
       "start": "cd api && npm start",
       "heroku-postbuild": "cd api && npm run unseed && npm run seed"
     },
+    "api-scripts": {
+      "heroku-prebuild": "cd api && npm install",
+      "start": "cd api && npm start",
+      "heroku-postbuild": "cd api && npm run unseed && npm run seed"
+    },
+    "client-scripts" : {
+      "heroku-prebuild": "cd client && npm install && npm run build",
+      "start": "cd client && npm start"
+    },
     "_comment_api_prebuild": "cd api && npm install",
     "_comment_api_start": "cd api && npm start",
     "_comment-api_postbuild": "cd api && npm run unseed && npm run seed",
