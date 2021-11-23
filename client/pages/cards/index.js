@@ -24,7 +24,7 @@ export default function Cards() {
         }
     }
 
-    console.log('Cards page');
+    // console.log('Cards page');
 
     return (
         <div className={styles.content}>
