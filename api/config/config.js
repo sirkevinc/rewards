@@ -1,4 +1,5 @@
-{
+require('dotenv').config();
+module.exports = {
   "development": {
     "username": "postgres",
     "password": "password",
@@ -14,10 +15,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "hhughcjxlsgzqc",
-    "password": "460c120563f369a0c5d2eda209f3903885e1fa5897a9fec2d1a78533093dccf7",
-    "database": "df5an2eukd70bt",
-    "host": "postgres://hhughcjxlsgzqc:460c120563f369a0c5d2eda209f3903885e1fa5897a9fec2d1a78533093dccf7@ec2-54-221-74-111.compute-1.amazonaws.com:5432/df5an2eukd70bt",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB,
+    "host": process.env.DB_HOST,
     "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
     "dialectOptions": {
