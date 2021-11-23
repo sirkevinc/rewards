@@ -10,7 +10,7 @@ export default function Navbar() {
     const logOutHandler = (e) => {
         e.preventDefault();
         signOut();
-        window.location.href="http://localhost:3000/"
+        window.location.href="https://obscure-falls-41384.herokuapp.com/"
     }
     // console.log('navbar', userInfo)
     return (
