@@ -148,6 +148,17 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
+    {
+      id: 14,
+      bank: 'Bank of America',
+      name: 'Unlimited Cash Rewards',
+      image: 'bofa_unlimited',
+      summary: 'Earn unlimited cash back on all purchases',
+      description: 'Earn unlimited 1.5% cash back on all purchases',
+      rewardType: 'cashback',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ], {});
     /*
       Add altering commands here.

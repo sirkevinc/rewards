@@ -564,6 +564,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        cardid: 14,
+        category: 'other',
+        type: 'cashback',
+        multiplier: 1.5,
+        summary: 'Earn cash back on all puchases',
+        description: 'Earn unlimited 1.5% cash back on all purchases. No limit to the amount of cash back earned and cash rewards do not expire',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {})
     /*
       Add altering commands here.
