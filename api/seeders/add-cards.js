@@ -137,6 +137,17 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
+    {
+      id: 13,
+      bank: 'Bank of America',
+      name: 'Customized Cash Rewards',
+      image: 'bofa_customized_cash',
+      summary: 'Earn up to 3% cash back in the category of your choice',
+      description: 'Cash back rewards card with customizable bonus categories including: gas, online shopping, dining, travel, drug stores, or home improvement',
+      rewardType: 'cashback',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ], {});
     /*
       Add altering commands here.

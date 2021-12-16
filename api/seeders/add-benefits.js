@@ -534,6 +534,36 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        cardid: 13,
+        category: 'other',
+        type: 'cashback',
+        multiplier: 3,
+        summary: 'Earn 3% cash back in the category of your choice',
+        description: 'Earn 3% cash back in categories including: gas, online shopping, dining, travel, drug stores, or home improvement/furnishings. Category can be changed once each calendar month',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cardid: 13,
+        category: 'groceries',
+        type: 'cashback',
+        multiplier: 2,
+        summary: 'Earn 2% cash back at grocery stores and wholesale clubs',
+        description: 'Earn 2% cash back at grocery stores and wholesale clubs (on the first $2500 in purchases each quarter)',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cardid: 13,
+        category: 'other',
+        type: 'cashback',
+        multiplier: 1,
+        summary: 'Earn cash back on all other puchases',
+        description: 'Earn 1% cash back on all other purchases',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {})
     /*
       Add altering commands here.
