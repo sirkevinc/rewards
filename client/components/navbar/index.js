@@ -10,7 +10,7 @@ export default function Navbar() {
     const logOutHandler = (e) => {
         e.preventDefault();
         signOut();
-        window.location.href="https://obscure-falls-41384.herokuapp.com/"
+        window.location.href="https://reward-client.onrender.com/"
     }
     // console.log('navbar', userInfo)
     return (
