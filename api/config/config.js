@@ -1,10 +1,10 @@
 require('dotenv').config();
 module.exports = {
   "development": {
-    "username": "postgres",
-    "password": "password",
-    "database": "rewards_db",
-    "host": "host.docker.internal",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB,
+    "host": process.env.DB_HOST,
     "dialect": "postgres"
   },
   "test": {
